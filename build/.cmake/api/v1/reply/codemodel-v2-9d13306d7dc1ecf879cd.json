@@ -1,0 +1,96 @@
+{
+	"configurations" : 
+	[
+		{
+			"abstractTargets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "Opus::opus::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Opus__opus-Debug-8d5febcdd01d82f58cf3.json",
+					"name" : "Opus::opus",
+					"projectIndex" : 0
+				}
+			],
+			"directories" : 
+			[
+				{
+					"abstractTargetIndexes" : 
+					[
+						0
+					],
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-f6f22219c74102c3da70.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.20"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"abstractTargetIndexes" : 
+					[
+						0
+					],
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "ResidualVoiceEngine",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "residual_relay::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-residual_relay-Debug-512c6c9672c535fdacf6.json",
+					"name" : "residual_relay",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "residual_voice::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-residual_voice-Debug-6b4aa676c0dfec086474.json",
+					"name" : "residual_voice",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "voice_demo::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-voice_demo-Debug-d5cca5afdac7bd4b3c6d.json",
+					"name" : "voice_demo",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Users/Mitchell Aikens/source/repos/ResidualAudioEngine/build",
+		"source" : "C:/Users/Mitchell Aikens/source/repos/ResidualAudioEngine"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 9
+	}
+}

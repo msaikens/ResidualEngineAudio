@@ -1,0 +1,19 @@
+# ninja log v7
+328	1644	7886411180634065	residual_voice_engine.exe	75ad8618e2a4e7e2
+67	705	7887226284059621	CMakeFiles/residual_voice.dir/src/rv_opus.c.obj	6ee2be84cce284b9
+67	478	7886436114155488	CMakeFiles/residual_voice.dir/src/rv_platform_win32.c.obj	bc68628123ff8bbe
+18	460	7886436113667876	CMakeFiles/residual_voice.dir/src/rv_jitter.c.obj	cceb40205eebdd1b
+143	1120	7887236337554437	CMakeFiles/residual_voice.dir/src/rv_udp_win32.c.obj	f91c66394f1a50c1
+42	486	7886436113905364	CMakeFiles/residual_voice.dir/src/rv_crypto.c.obj	52f162965a8782af
+97	880	7887251188732428	CMakeFiles/voice_demo.dir/examples/voice_demo.c.obj	265c926b408c1216
+83	697	7887244766738222	CMakeFiles/residual_voice.dir/src/voice.c.obj	943de0e87a1c2d5d
+698	836	7887244772892161	residual_voice.lib	a9c471dc5c4304f2
+881	7688	7887251196555934	voice_demo.exe	b8b8c195d57bbe77
+80	535	7886436114285517	CMakeFiles/residual_voice.dir/src/rv_pcm_jitter.c.obj	ce5fe29cfe7fa1e8
+93	710	7887226284320654	CMakeFiles/residual_voice.dir/src/rv_opus_jitter.c.obj	cd267adcef5bf6a6
+109	913	7887236337222826	CMakeFiles/residual_voice.dir/src/rv_netproto.c.obj	9a46574ae34e1097
+189	896	7887236338022837	CMakeFiles/residual_relay.dir/src/rv_relay.c.obj	6b79985388408f0c
+17	580	7887261571768664	CMakeFiles/residual_relay.dir/src/rv_relay_main.c.obj	bf57bcaf85e9aae3
+208	977	7887236338207994	CMakeFiles/residual_relay.dir/src/rv_netproto.c.obj	c21e751a44624459
+225	1158	7887236338365450	CMakeFiles/residual_relay.dir/src/rv_udp_win32.c.obj	8805706b262d28c2
+581	4492	7887261577405412	residual_relay.exe	b1725ac05d39d143
