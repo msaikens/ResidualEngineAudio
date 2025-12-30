@@ -1,0 +1,121 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"install"
+		],
+		"files" : 
+		[
+			"build/_deps/opus_cmake-src/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 602,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 620,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 628,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 646,
+				"parent" : 0
+			}
+		]
+	},
+	"codemodelVersion" : 
+	{
+		"major" : 2,
+		"minor" : 9
+	},
+	"installers" : 
+	[
+		{
+			"backtrace" : 1,
+			"component" : "Unspecified",
+			"destination" : "lib",
+			"paths" : 
+			[
+				"_deps/opus_cmake-build/opus.lib"
+			],
+			"targetId" : "opus::@188ec59b431b28fce6b1",
+			"targetIndex" : 0,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 1,
+			"component" : "Unspecified",
+			"destination" : "include/opus",
+			"paths" : 
+			[
+				"build/_deps/opus_cmake-src/include/opus.h",
+				"build/_deps/opus_cmake-src/include/opus_defines.h",
+				"build/_deps/opus_cmake-src/include/opus_multistream.h",
+				"build/_deps/opus_cmake-src/include/opus_projection.h",
+				"build/_deps/opus_cmake-src/include/opus_types.h"
+			],
+			"type" : "file"
+		},
+		{
+			"backtrace" : 2,
+			"component" : "Unspecified",
+			"destination" : "lib/pkgconfig",
+			"paths" : 
+			[
+				"build/_deps/opus_cmake-build/opus.pc"
+			],
+			"type" : "file"
+		},
+		{
+			"backtrace" : 3,
+			"component" : "Unspecified",
+			"destination" : "lib/cmake/Opus",
+			"exportName" : "OpusTargets",
+			"exportTargets" : 
+			[
+				{
+					"id" : "opus::@188ec59b431b28fce6b1",
+					"index" : 0
+				}
+			],
+			"paths" : 
+			[
+				"_deps/opus_cmake-build/CMakeFiles/Export/9d35469462eacf47198a472e89b71320/OpusTargets.cmake"
+			],
+			"type" : "export"
+		},
+		{
+			"backtrace" : 4,
+			"component" : "Unspecified",
+			"destination" : "lib/cmake/Opus",
+			"paths" : 
+			[
+				"build/_deps/opus_cmake-build/OpusConfig.cmake",
+				"build/_deps/opus_cmake-build/OpusConfigVersion.cmake"
+			],
+			"type" : "file"
+		}
+	],
+	"paths" : 
+	{
+		"build" : "_deps/opus_cmake-build",
+		"source" : "build/_deps/opus_cmake-src"
+	}
+}

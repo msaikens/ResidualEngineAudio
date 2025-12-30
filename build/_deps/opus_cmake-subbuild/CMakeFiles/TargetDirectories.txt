@@ -1,0 +1,3 @@
+C:/Users/Mitchell Aikens/source/repos/ResidualAudioEngine/build/_deps/opus_cmake-subbuild/CMakeFiles/opus_cmake-populate.dir
+C:/Users/Mitchell Aikens/source/repos/ResidualAudioEngine/build/_deps/opus_cmake-subbuild/CMakeFiles/edit_cache.dir
+C:/Users/Mitchell Aikens/source/repos/ResidualAudioEngine/build/_deps/opus_cmake-subbuild/CMakeFiles/rebuild_cache.dir

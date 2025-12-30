@@ -56,6 +56,24 @@ rule C_STATIC_LIBRARY_LINKER__residual_voice_shim_udp_Debug
 #############################################
 # Rule for compiling C files.
 
+rule C_COMPILER__residual_voice_unscanned_Debug
+  deps = msvc
+  command = ${LAUNCHER}${CODE_CHECK}C:\PROGRA~1\LLVM\bin\clang-cl.exe  /nologo $DEFINES $INCLUDES $FLAGS /showIncludes /Fo$out /Fd$TARGET_COMPILE_PDB -c -- $in
+  description = Building C object $out
+
+
+#############################################
+# Rule for linking C shared library.
+
+rule C_SHARED_LIBRARY_LINKER__residual_voice_Debug
+  command = C:\WINDOWS\system32\cmd.exe /C "$PRE_LINK && "C:\Program Files\CMake\bin\cmake.exe" -E vs_link_dll --msvc-ver=1950 --intdir=$OBJECT_DIR --rc=C:\PROGRA~1\LLVM\bin\llvm-rc.exe --mt=C:\PROGRA~1\LLVM\bin\llvm-mt.exe --manifests $MANIFESTS -- C:\PROGRA~1\LLVM\bin\lld-link.exe /nologo $in  /out:$TARGET_FILE /implib:$TARGET_IMPLIB /pdb:$TARGET_PDB /dll /version:0.0 $LINK_FLAGS $LINK_PATH $LINK_LIBRARIES && $POST_BUILD"
+  description = Linking C shared library $TARGET_FILE
+  restat = $RESTAT
+
+
+#############################################
+# Rule for compiling C files.
+
 rule C_COMPILER__voice_demo_unscanned_Debug
   deps = msvc
   command = ${LAUNCHER}${CODE_CHECK}C:\PROGRA~1\LLVM\bin\clang-cl.exe  /nologo $DEFINES $INCLUDES $FLAGS /showIncludes /Fo$out /Fd$TARGET_COMPILE_PDB -c -- $in
@@ -95,6 +113,26 @@ rule C_EXECUTABLE_LINKER__residual_relay_Debug
 rule CUSTOM_COMMAND
   command = $COMMAND
   description = $DESC
+
+
+#############################################
+# Rule for compiling C files.
+
+rule C_COMPILER__opus_unscanned_Debug
+  deps = msvc
+  command = ${LAUNCHER}${CODE_CHECK}C:\PROGRA~1\LLVM\bin\clang-cl.exe  /nologo $DEFINES $INCLUDES $FLAGS /showIncludes /Fo$out /Fd$TARGET_COMPILE_PDB -c -- $in
+  description = Building C object $out
+
+
+#############################################
+# Rule for linking C static library.
+
+rule C_STATIC_LIBRARY_LINKER__opus_Debug
+  command = C:\WINDOWS\system32\cmd.exe /C "$PRE_LINK && C:\PROGRA~1\LLVM\bin\llvm-lib.exe /nologo $LINK_FLAGS /out:$TARGET_FILE @$RSP_FILE && $POST_BUILD"
+  description = Linking C static library $TARGET_FILE
+  rspfile = $RSP_FILE
+  rspfile_content = $in_newline $LINK_PATH $LINK_LIBRARIES
+  restat = $RESTAT
 
 
 #############################################

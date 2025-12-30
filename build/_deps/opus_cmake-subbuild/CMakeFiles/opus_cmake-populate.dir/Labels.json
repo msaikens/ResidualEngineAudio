@@ -1,0 +1,46 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "C:/Users/Mitchell Aikens/source/repos/ResidualAudioEngine/build/_deps/opus_cmake-subbuild/CMakeFiles/opus_cmake-populate"
+		},
+		{
+			"file" : "C:/Users/Mitchell Aikens/source/repos/ResidualAudioEngine/build/_deps/opus_cmake-subbuild/CMakeFiles/opus_cmake-populate.rule"
+		},
+		{
+			"file" : "C:/Users/Mitchell Aikens/source/repos/ResidualAudioEngine/build/_deps/opus_cmake-subbuild/CMakeFiles/opus_cmake-populate-complete.rule"
+		},
+		{
+			"file" : "C:/Users/Mitchell Aikens/source/repos/ResidualAudioEngine/build/_deps/opus_cmake-subbuild/opus_cmake-populate-prefix/src/opus_cmake-populate-stamp/opus_cmake-populate-build.rule"
+		},
+		{
+			"file" : "C:/Users/Mitchell Aikens/source/repos/ResidualAudioEngine/build/_deps/opus_cmake-subbuild/opus_cmake-populate-prefix/src/opus_cmake-populate-stamp/opus_cmake-populate-configure.rule"
+		},
+		{
+			"file" : "C:/Users/Mitchell Aikens/source/repos/ResidualAudioEngine/build/_deps/opus_cmake-subbuild/opus_cmake-populate-prefix/src/opus_cmake-populate-stamp/opus_cmake-populate-download.rule"
+		},
+		{
+			"file" : "C:/Users/Mitchell Aikens/source/repos/ResidualAudioEngine/build/_deps/opus_cmake-subbuild/opus_cmake-populate-prefix/src/opus_cmake-populate-stamp/opus_cmake-populate-install.rule"
+		},
+		{
+			"file" : "C:/Users/Mitchell Aikens/source/repos/ResidualAudioEngine/build/_deps/opus_cmake-subbuild/opus_cmake-populate-prefix/src/opus_cmake-populate-stamp/opus_cmake-populate-mkdir.rule"
+		},
+		{
+			"file" : "C:/Users/Mitchell Aikens/source/repos/ResidualAudioEngine/build/_deps/opus_cmake-subbuild/opus_cmake-populate-prefix/src/opus_cmake-populate-stamp/opus_cmake-populate-patch.rule"
+		},
+		{
+			"file" : "C:/Users/Mitchell Aikens/source/repos/ResidualAudioEngine/build/_deps/opus_cmake-subbuild/opus_cmake-populate-prefix/src/opus_cmake-populate-stamp/opus_cmake-populate-test.rule"
+		},
+		{
+			"file" : "C:/Users/Mitchell Aikens/source/repos/ResidualAudioEngine/build/_deps/opus_cmake-subbuild/opus_cmake-populate-prefix/src/opus_cmake-populate-stamp/opus_cmake-populate-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"opus_cmake-populate"
+		],
+		"name" : "opus_cmake-populate"
+	}
+}

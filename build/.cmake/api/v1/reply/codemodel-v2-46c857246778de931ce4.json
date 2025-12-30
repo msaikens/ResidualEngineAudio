@@ -1,0 +1,158 @@
+{
+	"configurations" : 
+	[
+		{
+			"abstractTargets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "Git::Git::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Git__Git-Debug-84062bbc2091dcfd19a1.json",
+					"name" : "Git::Git",
+					"projectIndex" : 0
+				}
+			],
+			"directories" : 
+			[
+				{
+					"abstractTargetIndexes" : 
+					[
+						0
+					],
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-f6f22219c74102c3da70.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.20"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						1,
+						2,
+						3,
+						4,
+						5
+					]
+				},
+				{
+					"build" : "_deps/opus_cmake-build",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-_deps.opus_cmake-build-Debug-5169126d41e6c905e262.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 1,
+					"source" : "build/_deps/opus_cmake-src",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"abstractTargetIndexes" : 
+					[
+						0
+					],
+					"childIndexes" : 
+					[
+						1
+					],
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "ResidualVoiceEngine",
+					"targetIndexes" : 
+					[
+						1,
+						2,
+						3,
+						4,
+						5
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						1
+					],
+					"name" : "Opus",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 1,
+					"id" : "opus::@188ec59b431b28fce6b1",
+					"jsonFile" : "target-opus-Debug-d1fad10dfe0fb9ccf04e.json",
+					"name" : "opus",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "residual_relay::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-residual_relay-Debug-e7aa1fcf7989e0a38697.json",
+					"name" : "residual_relay",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "residual_voice::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-residual_voice-Debug-1ec9bff2b89219ace6f1.json",
+					"name" : "residual_voice",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "residual_voice_core::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-residual_voice_core-Debug-16b236c6f9857abbb447.json",
+					"name" : "residual_voice_core",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "residual_voice_shim_udp::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-residual_voice_shim_udp-Debug-24609712b83d4be56877.json",
+					"name" : "residual_voice_shim_udp",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "voice_demo::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-voice_demo-Debug-32fcb966e8dd34c03561.json",
+					"name" : "voice_demo",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Users/Mitchell Aikens/source/repos/ResidualAudioEngine/build",
+		"source" : "C:/Users/Mitchell Aikens/source/repos/ResidualAudioEngine"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 9
+	}
+}
