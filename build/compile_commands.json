@@ -1,33 +1,45 @@
 [
 {
   "directory": "C:/Users/Mitchell Aikens/source/repos/ResidualAudioEngine/build",
-  "command": "C:\\PROGRA~1\\LLVM\\bin\\clang-cl.exe  /nologo -I\"C:\\Users\\Mitchell Aikens\\source\\repos\\ResidualAudioEngine\\include\" -I\"C:\\Users\\Mitchell Aikens\\source\\repos\\ResidualAudioEngine\\src\" -imsvc\"C:\\Users\\Mitchell Aikens\\source\\repos\\vcpkg\\installed\\x64-windows\\include\" -imsvc\"C:\\Users\\Mitchell Aikens\\source\\repos\\vcpkg\\installed\\x64-windows\\include\\opus\" /DWIN32 /D_WINDOWS /Zi /Ob0 /Od /RTC1 /std:c11 -MDd /W4 /FoCMakeFiles\\residual_voice.dir\\src\\voice.c.obj /FdCMakeFiles\\residual_voice.dir\\residual_voice.pdb -c -- \"C:\\Users\\Mitchell Aikens\\source\\repos\\ResidualAudioEngine\\src\\voice.c\"",
+  "command": "C:\\PROGRA~1\\LLVM\\bin\\clang-cl.exe  /nologo -I\"C:\\Users\\Mitchell Aikens\\source\\repos\\ResidualAudioEngine\\include\" -I\"C:\\Users\\Mitchell Aikens\\source\\repos\\ResidualAudioEngine\\src\" -imsvc\"C:\\Users\\Mitchell Aikens\\source\\repos\\vcpkg\\installed\\x64-windows\\include\" -imsvc\"C:\\Users\\Mitchell Aikens\\source\\repos\\vcpkg\\installed\\x64-windows\\include\\opus\" /DWIN32 /D_WINDOWS /Zi /Ob0 /Od /RTC1 /std:c11 -MDd /W4 /FoCMakeFiles\\residual_voice_core.dir\\src\\voice.c.obj /FdCMakeFiles\\residual_voice_core.dir\\residual_voice_core.pdb -c -- \"C:\\Users\\Mitchell Aikens\\source\\repos\\ResidualAudioEngine\\src\\voice.c\"",
   "file": "C:/Users/Mitchell Aikens/source/repos/ResidualAudioEngine/src/voice.c",
-  "output": "C:/Users/Mitchell Aikens/source/repos/ResidualAudioEngine/build/CMakeFiles/residual_voice.dir/src/voice.c.obj"
+  "output": "C:/Users/Mitchell Aikens/source/repos/ResidualAudioEngine/build/CMakeFiles/residual_voice_core.dir/src/voice.c.obj"
 },
 {
   "directory": "C:/Users/Mitchell Aikens/source/repos/ResidualAudioEngine/build",
-  "command": "C:\\PROGRA~1\\LLVM\\bin\\clang-cl.exe  /nologo -I\"C:\\Users\\Mitchell Aikens\\source\\repos\\ResidualAudioEngine\\include\" -I\"C:\\Users\\Mitchell Aikens\\source\\repos\\ResidualAudioEngine\\src\" -imsvc\"C:\\Users\\Mitchell Aikens\\source\\repos\\vcpkg\\installed\\x64-windows\\include\" -imsvc\"C:\\Users\\Mitchell Aikens\\source\\repos\\vcpkg\\installed\\x64-windows\\include\\opus\" /DWIN32 /D_WINDOWS /Zi /Ob0 /Od /RTC1 /std:c11 -MDd /W4 /FoCMakeFiles\\residual_voice.dir\\src\\rv_opus.c.obj /FdCMakeFiles\\residual_voice.dir\\residual_voice.pdb -c -- \"C:\\Users\\Mitchell Aikens\\source\\repos\\ResidualAudioEngine\\src\\rv_opus.c\"",
+  "command": "C:\\PROGRA~1\\LLVM\\bin\\clang-cl.exe  /nologo -I\"C:\\Users\\Mitchell Aikens\\source\\repos\\ResidualAudioEngine\\include\" -I\"C:\\Users\\Mitchell Aikens\\source\\repos\\ResidualAudioEngine\\src\" -imsvc\"C:\\Users\\Mitchell Aikens\\source\\repos\\vcpkg\\installed\\x64-windows\\include\" -imsvc\"C:\\Users\\Mitchell Aikens\\source\\repos\\vcpkg\\installed\\x64-windows\\include\\opus\" /DWIN32 /D_WINDOWS /Zi /Ob0 /Od /RTC1 /std:c11 -MDd /W4 /FoCMakeFiles\\residual_voice_core.dir\\src\\rv_opus.c.obj /FdCMakeFiles\\residual_voice_core.dir\\residual_voice_core.pdb -c -- \"C:\\Users\\Mitchell Aikens\\source\\repos\\ResidualAudioEngine\\src\\rv_opus.c\"",
   "file": "C:/Users/Mitchell Aikens/source/repos/ResidualAudioEngine/src/rv_opus.c",
-  "output": "C:/Users/Mitchell Aikens/source/repos/ResidualAudioEngine/build/CMakeFiles/residual_voice.dir/src/rv_opus.c.obj"
+  "output": "C:/Users/Mitchell Aikens/source/repos/ResidualAudioEngine/build/CMakeFiles/residual_voice_core.dir/src/rv_opus.c.obj"
 },
 {
   "directory": "C:/Users/Mitchell Aikens/source/repos/ResidualAudioEngine/build",
-  "command": "C:\\PROGRA~1\\LLVM\\bin\\clang-cl.exe  /nologo -I\"C:\\Users\\Mitchell Aikens\\source\\repos\\ResidualAudioEngine\\include\" -I\"C:\\Users\\Mitchell Aikens\\source\\repos\\ResidualAudioEngine\\src\" -imsvc\"C:\\Users\\Mitchell Aikens\\source\\repos\\vcpkg\\installed\\x64-windows\\include\" -imsvc\"C:\\Users\\Mitchell Aikens\\source\\repos\\vcpkg\\installed\\x64-windows\\include\\opus\" /DWIN32 /D_WINDOWS /Zi /Ob0 /Od /RTC1 /std:c11 -MDd /W4 /FoCMakeFiles\\residual_voice.dir\\src\\rv_opus_jitter.c.obj /FdCMakeFiles\\residual_voice.dir\\residual_voice.pdb -c -- \"C:\\Users\\Mitchell Aikens\\source\\repos\\ResidualAudioEngine\\src\\rv_opus_jitter.c\"",
+  "command": "C:\\PROGRA~1\\LLVM\\bin\\clang-cl.exe  /nologo -I\"C:\\Users\\Mitchell Aikens\\source\\repos\\ResidualAudioEngine\\include\" -I\"C:\\Users\\Mitchell Aikens\\source\\repos\\ResidualAudioEngine\\src\" -imsvc\"C:\\Users\\Mitchell Aikens\\source\\repos\\vcpkg\\installed\\x64-windows\\include\" -imsvc\"C:\\Users\\Mitchell Aikens\\source\\repos\\vcpkg\\installed\\x64-windows\\include\\opus\" /DWIN32 /D_WINDOWS /Zi /Ob0 /Od /RTC1 /std:c11 -MDd /W4 /FoCMakeFiles\\residual_voice_core.dir\\src\\rv_opus_jitter.c.obj /FdCMakeFiles\\residual_voice_core.dir\\residual_voice_core.pdb -c -- \"C:\\Users\\Mitchell Aikens\\source\\repos\\ResidualAudioEngine\\src\\rv_opus_jitter.c\"",
   "file": "C:/Users/Mitchell Aikens/source/repos/ResidualAudioEngine/src/rv_opus_jitter.c",
-  "output": "C:/Users/Mitchell Aikens/source/repos/ResidualAudioEngine/build/CMakeFiles/residual_voice.dir/src/rv_opus_jitter.c.obj"
+  "output": "C:/Users/Mitchell Aikens/source/repos/ResidualAudioEngine/build/CMakeFiles/residual_voice_core.dir/src/rv_opus_jitter.c.obj"
 },
 {
   "directory": "C:/Users/Mitchell Aikens/source/repos/ResidualAudioEngine/build",
-  "command": "C:\\PROGRA~1\\LLVM\\bin\\clang-cl.exe  /nologo -I\"C:\\Users\\Mitchell Aikens\\source\\repos\\ResidualAudioEngine\\include\" -I\"C:\\Users\\Mitchell Aikens\\source\\repos\\ResidualAudioEngine\\src\" -imsvc\"C:\\Users\\Mitchell Aikens\\source\\repos\\vcpkg\\installed\\x64-windows\\include\" -imsvc\"C:\\Users\\Mitchell Aikens\\source\\repos\\vcpkg\\installed\\x64-windows\\include\\opus\" /DWIN32 /D_WINDOWS /Zi /Ob0 /Od /RTC1 /std:c11 -MDd /W4 /FoCMakeFiles\\residual_voice.dir\\src\\rv_netproto.c.obj /FdCMakeFiles\\residual_voice.dir\\residual_voice.pdb -c -- \"C:\\Users\\Mitchell Aikens\\source\\repos\\ResidualAudioEngine\\src\\rv_netproto.c\"",
+  "command": "C:\\PROGRA~1\\LLVM\\bin\\clang-cl.exe  /nologo -I\"C:\\Users\\Mitchell Aikens\\source\\repos\\ResidualAudioEngine\\include\" -I\"C:\\Users\\Mitchell Aikens\\source\\repos\\ResidualAudioEngine\\src\" -imsvc\"C:\\Users\\Mitchell Aikens\\source\\repos\\vcpkg\\installed\\x64-windows\\include\" -imsvc\"C:\\Users\\Mitchell Aikens\\source\\repos\\vcpkg\\installed\\x64-windows\\include\\opus\" /DWIN32 /D_WINDOWS /Zi /Ob0 /Od /RTC1 /std:c11 -MDd /W4 /FoCMakeFiles\\residual_voice_core.dir\\src\\rv_netproto.c.obj /FdCMakeFiles\\residual_voice_core.dir\\residual_voice_core.pdb -c -- \"C:\\Users\\Mitchell Aikens\\source\\repos\\ResidualAudioEngine\\src\\rv_netproto.c\"",
   "file": "C:/Users/Mitchell Aikens/source/repos/ResidualAudioEngine/src/rv_netproto.c",
-  "output": "C:/Users/Mitchell Aikens/source/repos/ResidualAudioEngine/build/CMakeFiles/residual_voice.dir/src/rv_netproto.c.obj"
+  "output": "C:/Users/Mitchell Aikens/source/repos/ResidualAudioEngine/build/CMakeFiles/residual_voice_core.dir/src/rv_netproto.c.obj"
 },
 {
   "directory": "C:/Users/Mitchell Aikens/source/repos/ResidualAudioEngine/build",
-  "command": "C:\\PROGRA~1\\LLVM\\bin\\clang-cl.exe  /nologo -I\"C:\\Users\\Mitchell Aikens\\source\\repos\\ResidualAudioEngine\\include\" -I\"C:\\Users\\Mitchell Aikens\\source\\repos\\ResidualAudioEngine\\src\" -imsvc\"C:\\Users\\Mitchell Aikens\\source\\repos\\vcpkg\\installed\\x64-windows\\include\" -imsvc\"C:\\Users\\Mitchell Aikens\\source\\repos\\vcpkg\\installed\\x64-windows\\include\\opus\" /DWIN32 /D_WINDOWS /Zi /Ob0 /Od /RTC1 /std:c11 -MDd /W4 /FoCMakeFiles\\residual_voice.dir\\src\\rv_udp_win32.c.obj /FdCMakeFiles\\residual_voice.dir\\residual_voice.pdb -c -- \"C:\\Users\\Mitchell Aikens\\source\\repos\\ResidualAudioEngine\\src\\rv_udp_win32.c\"",
+  "command": "C:\\PROGRA~1\\LLVM\\bin\\clang-cl.exe  /nologo -I\"C:\\Users\\Mitchell Aikens\\source\\repos\\ResidualAudioEngine\\include\" -I\"C:\\Users\\Mitchell Aikens\\source\\repos\\ResidualAudioEngine\\src\" -imsvc\"C:\\Users\\Mitchell Aikens\\source\\repos\\vcpkg\\installed\\x64-windows\\include\" -imsvc\"C:\\Users\\Mitchell Aikens\\source\\repos\\vcpkg\\installed\\x64-windows\\include\\opus\" /DWIN32 /D_WINDOWS /Zi /Ob0 /Od /RTC1 /std:c11 -MDd /W4 /FoCMakeFiles\\residual_voice_core.dir\\src\\rv_shim_transport.c.obj /FdCMakeFiles\\residual_voice_core.dir\\residual_voice_core.pdb -c -- \"C:\\Users\\Mitchell Aikens\\source\\repos\\ResidualAudioEngine\\src\\rv_shim_transport.c\"",
+  "file": "C:/Users/Mitchell Aikens/source/repos/ResidualAudioEngine/src/rv_shim_transport.c",
+  "output": "C:/Users/Mitchell Aikens/source/repos/ResidualAudioEngine/build/CMakeFiles/residual_voice_core.dir/src/rv_shim_transport.c.obj"
+},
+{
+  "directory": "C:/Users/Mitchell Aikens/source/repos/ResidualAudioEngine/build",
+  "command": "C:\\PROGRA~1\\LLVM\\bin\\clang-cl.exe  /nologo -I\"C:\\Users\\Mitchell Aikens\\source\\repos\\ResidualAudioEngine\\include\" -I\"C:\\Users\\Mitchell Aikens\\source\\repos\\ResidualAudioEngine\\src\" /DWIN32 /D_WINDOWS /Zi /Ob0 /Od /RTC1 /std:c11 -MDd /W4 /FoCMakeFiles\\residual_voice_shim_udp.dir\\src\\rv_shim_udp.c.obj /FdCMakeFiles\\residual_voice_shim_udp.dir\\residual_voice_shim_udp.pdb -c -- \"C:\\Users\\Mitchell Aikens\\source\\repos\\ResidualAudioEngine\\src\\rv_shim_udp.c\"",
+  "file": "C:/Users/Mitchell Aikens/source/repos/ResidualAudioEngine/src/rv_shim_udp.c",
+  "output": "C:/Users/Mitchell Aikens/source/repos/ResidualAudioEngine/build/CMakeFiles/residual_voice_shim_udp.dir/src/rv_shim_udp.c.obj"
+},
+{
+  "directory": "C:/Users/Mitchell Aikens/source/repos/ResidualAudioEngine/build",
+  "command": "C:\\PROGRA~1\\LLVM\\bin\\clang-cl.exe  /nologo -I\"C:\\Users\\Mitchell Aikens\\source\\repos\\ResidualAudioEngine\\include\" -I\"C:\\Users\\Mitchell Aikens\\source\\repos\\ResidualAudioEngine\\src\" /DWIN32 /D_WINDOWS /Zi /Ob0 /Od /RTC1 /std:c11 -MDd /W4 /FoCMakeFiles\\residual_voice_shim_udp.dir\\src\\rv_udp_win32.c.obj /FdCMakeFiles\\residual_voice_shim_udp.dir\\residual_voice_shim_udp.pdb -c -- \"C:\\Users\\Mitchell Aikens\\source\\repos\\ResidualAudioEngine\\src\\rv_udp_win32.c\"",
   "file": "C:/Users/Mitchell Aikens/source/repos/ResidualAudioEngine/src/rv_udp_win32.c",
-  "output": "C:/Users/Mitchell Aikens/source/repos/ResidualAudioEngine/build/CMakeFiles/residual_voice.dir/src/rv_udp_win32.c.obj"
+  "output": "C:/Users/Mitchell Aikens/source/repos/ResidualAudioEngine/build/CMakeFiles/residual_voice_shim_udp.dir/src/rv_udp_win32.c.obj"
 },
 {
   "directory": "C:/Users/Mitchell Aikens/source/repos/ResidualAudioEngine/build",

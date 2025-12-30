@@ -20,7 +20,7 @@ msvc_deps_prefix = Note: including file:
 #############################################
 # Rule for compiling C files.
 
-rule C_COMPILER__residual_voice_unscanned_Debug
+rule C_COMPILER__residual_voice_core_unscanned_Debug
   deps = msvc
   command = ${LAUNCHER}${CODE_CHECK}C:\PROGRA~1\LLVM\bin\clang-cl.exe  /nologo $DEFINES $INCLUDES $FLAGS /showIncludes /Fo$out /Fd$TARGET_COMPILE_PDB -c -- $in
   description = Building C object $out
@@ -29,7 +29,25 @@ rule C_COMPILER__residual_voice_unscanned_Debug
 #############################################
 # Rule for linking C static library.
 
-rule C_STATIC_LIBRARY_LINKER__residual_voice_Debug
+rule C_STATIC_LIBRARY_LINKER__residual_voice_core_Debug
+  command = C:\WINDOWS\system32\cmd.exe /C "$PRE_LINK && C:\PROGRA~1\LLVM\bin\llvm-lib.exe /nologo $LINK_FLAGS /out:$TARGET_FILE $in && $POST_BUILD"
+  description = Linking C static library $TARGET_FILE
+  restat = $RESTAT
+
+
+#############################################
+# Rule for compiling C files.
+
+rule C_COMPILER__residual_voice_shim_udp_unscanned_Debug
+  deps = msvc
+  command = ${LAUNCHER}${CODE_CHECK}C:\PROGRA~1\LLVM\bin\clang-cl.exe  /nologo $DEFINES $INCLUDES $FLAGS /showIncludes /Fo$out /Fd$TARGET_COMPILE_PDB -c -- $in
+  description = Building C object $out
+
+
+#############################################
+# Rule for linking C static library.
+
+rule C_STATIC_LIBRARY_LINKER__residual_voice_shim_udp_Debug
   command = C:\WINDOWS\system32\cmd.exe /C "$PRE_LINK && C:\PROGRA~1\LLVM\bin\llvm-lib.exe /nologo $LINK_FLAGS /out:$TARGET_FILE $in && $POST_BUILD"
   description = Linking C static library $TARGET_FILE
   restat = $RESTAT

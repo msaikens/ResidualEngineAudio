@@ -41,83 +41,132 @@ include CMakeFiles\rules.ninja
 
 cmake_ninja_workdir = C$:\Users\Mitchell$ Aikens\source\repos\ResidualAudioEngine\build\
 # =============================================================================
-# Object build statements for STATIC_LIBRARY target residual_voice
+# Object build statements for STATIC_LIBRARY target residual_voice_core
 
 
 #############################################
-# Order-only phony target for residual_voice
+# Order-only phony target for residual_voice_core
 
-build cmake_object_order_depends_target_residual_voice: phony || .
+build cmake_object_order_depends_target_residual_voice_core: phony || .
 
-build CMakeFiles\residual_voice.dir\src\voice.c.obj: C_COMPILER__residual_voice_unscanned_Debug C$:\Users\Mitchell$ Aikens\source\repos\ResidualAudioEngine\src\voice.c || cmake_object_order_depends_target_residual_voice
+build CMakeFiles\residual_voice_core.dir\src\voice.c.obj: C_COMPILER__residual_voice_core_unscanned_Debug C$:\Users\Mitchell$ Aikens\source\repos\ResidualAudioEngine\src\voice.c || cmake_object_order_depends_target_residual_voice_core
   CONFIG = Debug
   FLAGS = /DWIN32 /D_WINDOWS /Zi /Ob0 /Od /RTC1 /std:c11 -MDd /W4
   INCLUDES = -I"C:\Users\Mitchell Aikens\source\repos\ResidualAudioEngine\include" -I"C:\Users\Mitchell Aikens\source\repos\ResidualAudioEngine\src" -imsvc"C:\Users\Mitchell Aikens\source\repos\vcpkg\installed\x64-windows\include" -imsvc"C:\Users\Mitchell Aikens\source\repos\vcpkg\installed\x64-windows\include\opus"
-  OBJECT_DIR = CMakeFiles\residual_voice.dir
-  OBJECT_FILE_DIR = CMakeFiles\residual_voice.dir\src
-  TARGET_COMPILE_PDB = CMakeFiles\residual_voice.dir\residual_voice.pdb
-  TARGET_PDB = residual_voice.pdb
-  TARGET_SUPPORT_DIR = CMakeFiles\residual_voice.dir
+  OBJECT_DIR = CMakeFiles\residual_voice_core.dir
+  OBJECT_FILE_DIR = CMakeFiles\residual_voice_core.dir\src
+  TARGET_COMPILE_PDB = CMakeFiles\residual_voice_core.dir\residual_voice_core.pdb
+  TARGET_PDB = residual_voice_core.pdb
+  TARGET_SUPPORT_DIR = CMakeFiles\residual_voice_core.dir
 
-build CMakeFiles\residual_voice.dir\src\rv_opus.c.obj: C_COMPILER__residual_voice_unscanned_Debug C$:\Users\Mitchell$ Aikens\source\repos\ResidualAudioEngine\src\rv_opus.c || cmake_object_order_depends_target_residual_voice
+build CMakeFiles\residual_voice_core.dir\src\rv_opus.c.obj: C_COMPILER__residual_voice_core_unscanned_Debug C$:\Users\Mitchell$ Aikens\source\repos\ResidualAudioEngine\src\rv_opus.c || cmake_object_order_depends_target_residual_voice_core
   CONFIG = Debug
   FLAGS = /DWIN32 /D_WINDOWS /Zi /Ob0 /Od /RTC1 /std:c11 -MDd /W4
   INCLUDES = -I"C:\Users\Mitchell Aikens\source\repos\ResidualAudioEngine\include" -I"C:\Users\Mitchell Aikens\source\repos\ResidualAudioEngine\src" -imsvc"C:\Users\Mitchell Aikens\source\repos\vcpkg\installed\x64-windows\include" -imsvc"C:\Users\Mitchell Aikens\source\repos\vcpkg\installed\x64-windows\include\opus"
-  OBJECT_DIR = CMakeFiles\residual_voice.dir
-  OBJECT_FILE_DIR = CMakeFiles\residual_voice.dir\src
-  TARGET_COMPILE_PDB = CMakeFiles\residual_voice.dir\residual_voice.pdb
-  TARGET_PDB = residual_voice.pdb
-  TARGET_SUPPORT_DIR = CMakeFiles\residual_voice.dir
+  OBJECT_DIR = CMakeFiles\residual_voice_core.dir
+  OBJECT_FILE_DIR = CMakeFiles\residual_voice_core.dir\src
+  TARGET_COMPILE_PDB = CMakeFiles\residual_voice_core.dir\residual_voice_core.pdb
+  TARGET_PDB = residual_voice_core.pdb
+  TARGET_SUPPORT_DIR = CMakeFiles\residual_voice_core.dir
 
-build CMakeFiles\residual_voice.dir\src\rv_opus_jitter.c.obj: C_COMPILER__residual_voice_unscanned_Debug C$:\Users\Mitchell$ Aikens\source\repos\ResidualAudioEngine\src\rv_opus_jitter.c || cmake_object_order_depends_target_residual_voice
+build CMakeFiles\residual_voice_core.dir\src\rv_opus_jitter.c.obj: C_COMPILER__residual_voice_core_unscanned_Debug C$:\Users\Mitchell$ Aikens\source\repos\ResidualAudioEngine\src\rv_opus_jitter.c || cmake_object_order_depends_target_residual_voice_core
   CONFIG = Debug
   FLAGS = /DWIN32 /D_WINDOWS /Zi /Ob0 /Od /RTC1 /std:c11 -MDd /W4
   INCLUDES = -I"C:\Users\Mitchell Aikens\source\repos\ResidualAudioEngine\include" -I"C:\Users\Mitchell Aikens\source\repos\ResidualAudioEngine\src" -imsvc"C:\Users\Mitchell Aikens\source\repos\vcpkg\installed\x64-windows\include" -imsvc"C:\Users\Mitchell Aikens\source\repos\vcpkg\installed\x64-windows\include\opus"
-  OBJECT_DIR = CMakeFiles\residual_voice.dir
-  OBJECT_FILE_DIR = CMakeFiles\residual_voice.dir\src
-  TARGET_COMPILE_PDB = CMakeFiles\residual_voice.dir\residual_voice.pdb
-  TARGET_PDB = residual_voice.pdb
-  TARGET_SUPPORT_DIR = CMakeFiles\residual_voice.dir
+  OBJECT_DIR = CMakeFiles\residual_voice_core.dir
+  OBJECT_FILE_DIR = CMakeFiles\residual_voice_core.dir\src
+  TARGET_COMPILE_PDB = CMakeFiles\residual_voice_core.dir\residual_voice_core.pdb
+  TARGET_PDB = residual_voice_core.pdb
+  TARGET_SUPPORT_DIR = CMakeFiles\residual_voice_core.dir
 
-build CMakeFiles\residual_voice.dir\src\rv_netproto.c.obj: C_COMPILER__residual_voice_unscanned_Debug C$:\Users\Mitchell$ Aikens\source\repos\ResidualAudioEngine\src\rv_netproto.c || cmake_object_order_depends_target_residual_voice
+build CMakeFiles\residual_voice_core.dir\src\rv_netproto.c.obj: C_COMPILER__residual_voice_core_unscanned_Debug C$:\Users\Mitchell$ Aikens\source\repos\ResidualAudioEngine\src\rv_netproto.c || cmake_object_order_depends_target_residual_voice_core
   CONFIG = Debug
   FLAGS = /DWIN32 /D_WINDOWS /Zi /Ob0 /Od /RTC1 /std:c11 -MDd /W4
   INCLUDES = -I"C:\Users\Mitchell Aikens\source\repos\ResidualAudioEngine\include" -I"C:\Users\Mitchell Aikens\source\repos\ResidualAudioEngine\src" -imsvc"C:\Users\Mitchell Aikens\source\repos\vcpkg\installed\x64-windows\include" -imsvc"C:\Users\Mitchell Aikens\source\repos\vcpkg\installed\x64-windows\include\opus"
-  OBJECT_DIR = CMakeFiles\residual_voice.dir
-  OBJECT_FILE_DIR = CMakeFiles\residual_voice.dir\src
-  TARGET_COMPILE_PDB = CMakeFiles\residual_voice.dir\residual_voice.pdb
-  TARGET_PDB = residual_voice.pdb
-  TARGET_SUPPORT_DIR = CMakeFiles\residual_voice.dir
+  OBJECT_DIR = CMakeFiles\residual_voice_core.dir
+  OBJECT_FILE_DIR = CMakeFiles\residual_voice_core.dir\src
+  TARGET_COMPILE_PDB = CMakeFiles\residual_voice_core.dir\residual_voice_core.pdb
+  TARGET_PDB = residual_voice_core.pdb
+  TARGET_SUPPORT_DIR = CMakeFiles\residual_voice_core.dir
 
-build CMakeFiles\residual_voice.dir\src\rv_udp_win32.c.obj: C_COMPILER__residual_voice_unscanned_Debug C$:\Users\Mitchell$ Aikens\source\repos\ResidualAudioEngine\src\rv_udp_win32.c || cmake_object_order_depends_target_residual_voice
+build CMakeFiles\residual_voice_core.dir\src\rv_shim_transport.c.obj: C_COMPILER__residual_voice_core_unscanned_Debug C$:\Users\Mitchell$ Aikens\source\repos\ResidualAudioEngine\src\rv_shim_transport.c || cmake_object_order_depends_target_residual_voice_core
   CONFIG = Debug
   FLAGS = /DWIN32 /D_WINDOWS /Zi /Ob0 /Od /RTC1 /std:c11 -MDd /W4
   INCLUDES = -I"C:\Users\Mitchell Aikens\source\repos\ResidualAudioEngine\include" -I"C:\Users\Mitchell Aikens\source\repos\ResidualAudioEngine\src" -imsvc"C:\Users\Mitchell Aikens\source\repos\vcpkg\installed\x64-windows\include" -imsvc"C:\Users\Mitchell Aikens\source\repos\vcpkg\installed\x64-windows\include\opus"
-  OBJECT_DIR = CMakeFiles\residual_voice.dir
-  OBJECT_FILE_DIR = CMakeFiles\residual_voice.dir\src
-  TARGET_COMPILE_PDB = CMakeFiles\residual_voice.dir\residual_voice.pdb
-  TARGET_PDB = residual_voice.pdb
-  TARGET_SUPPORT_DIR = CMakeFiles\residual_voice.dir
+  OBJECT_DIR = CMakeFiles\residual_voice_core.dir
+  OBJECT_FILE_DIR = CMakeFiles\residual_voice_core.dir\src
+  TARGET_COMPILE_PDB = CMakeFiles\residual_voice_core.dir\residual_voice_core.pdb
+  TARGET_PDB = residual_voice_core.pdb
+  TARGET_SUPPORT_DIR = CMakeFiles\residual_voice_core.dir
 
 
 # =============================================================================
-# Link build statements for STATIC_LIBRARY target residual_voice
+# Link build statements for STATIC_LIBRARY target residual_voice_core
 
 
 #############################################
-# Link the static library residual_voice.lib
+# Link the static library residual_voice_core.lib
 
-build residual_voice.lib: C_STATIC_LIBRARY_LINKER__residual_voice_Debug CMakeFiles\residual_voice.dir\src\voice.c.obj CMakeFiles\residual_voice.dir\src\rv_opus.c.obj CMakeFiles\residual_voice.dir\src\rv_opus_jitter.c.obj CMakeFiles\residual_voice.dir\src\rv_netproto.c.obj CMakeFiles\residual_voice.dir\src\rv_udp_win32.c.obj
+build residual_voice_core.lib: C_STATIC_LIBRARY_LINKER__residual_voice_core_Debug CMakeFiles\residual_voice_core.dir\src\voice.c.obj CMakeFiles\residual_voice_core.dir\src\rv_opus.c.obj CMakeFiles\residual_voice_core.dir\src\rv_opus_jitter.c.obj CMakeFiles\residual_voice_core.dir\src\rv_netproto.c.obj CMakeFiles\residual_voice_core.dir\src\rv_shim_transport.c.obj
   CONFIG = Debug
   LANGUAGE_COMPILE_FLAGS = /DWIN32 /D_WINDOWS /Zi /Ob0 /Od /RTC1 -MDd
   LINK_FLAGS = /machine:x64
-  OBJECT_DIR = CMakeFiles\residual_voice.dir
+  OBJECT_DIR = CMakeFiles\residual_voice_core.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
-  TARGET_COMPILE_PDB = CMakeFiles\residual_voice.dir\residual_voice.pdb
-  TARGET_FILE = residual_voice.lib
-  TARGET_PDB = residual_voice.pdb
-  TARGET_SUPPORT_DIR = CMakeFiles\residual_voice.dir
+  TARGET_COMPILE_PDB = CMakeFiles\residual_voice_core.dir\residual_voice_core.pdb
+  TARGET_FILE = residual_voice_core.lib
+  TARGET_PDB = residual_voice_core.pdb
+  TARGET_SUPPORT_DIR = CMakeFiles\residual_voice_core.dir
+
+# =============================================================================
+# Object build statements for STATIC_LIBRARY target residual_voice_shim_udp
+
+
+#############################################
+# Order-only phony target for residual_voice_shim_udp
+
+build cmake_object_order_depends_target_residual_voice_shim_udp: phony || cmake_object_order_depends_target_residual_voice_core
+
+build CMakeFiles\residual_voice_shim_udp.dir\src\rv_shim_udp.c.obj: C_COMPILER__residual_voice_shim_udp_unscanned_Debug C$:\Users\Mitchell$ Aikens\source\repos\ResidualAudioEngine\src\rv_shim_udp.c || cmake_object_order_depends_target_residual_voice_shim_udp
+  CONFIG = Debug
+  FLAGS = /DWIN32 /D_WINDOWS /Zi /Ob0 /Od /RTC1 /std:c11 -MDd /W4
+  INCLUDES = -I"C:\Users\Mitchell Aikens\source\repos\ResidualAudioEngine\include" -I"C:\Users\Mitchell Aikens\source\repos\ResidualAudioEngine\src"
+  OBJECT_DIR = CMakeFiles\residual_voice_shim_udp.dir
+  OBJECT_FILE_DIR = CMakeFiles\residual_voice_shim_udp.dir\src
+  TARGET_COMPILE_PDB = CMakeFiles\residual_voice_shim_udp.dir\residual_voice_shim_udp.pdb
+  TARGET_PDB = residual_voice_shim_udp.pdb
+  TARGET_SUPPORT_DIR = CMakeFiles\residual_voice_shim_udp.dir
+
+build CMakeFiles\residual_voice_shim_udp.dir\src\rv_udp_win32.c.obj: C_COMPILER__residual_voice_shim_udp_unscanned_Debug C$:\Users\Mitchell$ Aikens\source\repos\ResidualAudioEngine\src\rv_udp_win32.c || cmake_object_order_depends_target_residual_voice_shim_udp
+  CONFIG = Debug
+  FLAGS = /DWIN32 /D_WINDOWS /Zi /Ob0 /Od /RTC1 /std:c11 -MDd /W4
+  INCLUDES = -I"C:\Users\Mitchell Aikens\source\repos\ResidualAudioEngine\include" -I"C:\Users\Mitchell Aikens\source\repos\ResidualAudioEngine\src"
+  OBJECT_DIR = CMakeFiles\residual_voice_shim_udp.dir
+  OBJECT_FILE_DIR = CMakeFiles\residual_voice_shim_udp.dir\src
+  TARGET_COMPILE_PDB = CMakeFiles\residual_voice_shim_udp.dir\residual_voice_shim_udp.pdb
+  TARGET_PDB = residual_voice_shim_udp.pdb
+  TARGET_SUPPORT_DIR = CMakeFiles\residual_voice_shim_udp.dir
+
+
+# =============================================================================
+# Link build statements for STATIC_LIBRARY target residual_voice_shim_udp
+
+
+#############################################
+# Link the static library residual_voice_shim_udp.lib
+
+build residual_voice_shim_udp.lib: C_STATIC_LIBRARY_LINKER__residual_voice_shim_udp_Debug CMakeFiles\residual_voice_shim_udp.dir\src\rv_shim_udp.c.obj CMakeFiles\residual_voice_shim_udp.dir\src\rv_udp_win32.c.obj || residual_voice_core.lib
+  CONFIG = Debug
+  LANGUAGE_COMPILE_FLAGS = /DWIN32 /D_WINDOWS /Zi /Ob0 /Od /RTC1 -MDd
+  LINK_FLAGS = /machine:x64
+  OBJECT_DIR = CMakeFiles\residual_voice_shim_udp.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_COMPILE_PDB = CMakeFiles\residual_voice_shim_udp.dir\residual_voice_shim_udp.pdb
+  TARGET_FILE = residual_voice_shim_udp.lib
+  TARGET_PDB = residual_voice_shim_udp.pdb
+  TARGET_SUPPORT_DIR = CMakeFiles\residual_voice_shim_udp.dir
 
 # =============================================================================
 # Object build statements for EXECUTABLE target voice_demo
@@ -126,7 +175,7 @@ build residual_voice.lib: C_STATIC_LIBRARY_LINKER__residual_voice_Debug CMakeFil
 #############################################
 # Order-only phony target for voice_demo
 
-build cmake_object_order_depends_target_voice_demo: phony || cmake_object_order_depends_target_residual_voice
+build cmake_object_order_depends_target_voice_demo: phony || cmake_object_order_depends_target_residual_voice_core cmake_object_order_depends_target_residual_voice_shim_udp
 
 build CMakeFiles\voice_demo.dir\examples\voice_demo.c.obj: C_COMPILER__voice_demo_unscanned_Debug C$:\Users\Mitchell$ Aikens\source\repos\ResidualAudioEngine\examples\voice_demo.c || cmake_object_order_depends_target_voice_demo
   CONFIG = Debug
@@ -146,11 +195,11 @@ build CMakeFiles\voice_demo.dir\examples\voice_demo.c.obj: C_COMPILER__voice_dem
 #############################################
 # Link the executable voice_demo.exe
 
-build voice_demo.exe: C_EXECUTABLE_LINKER__voice_demo_Debug CMakeFiles\voice_demo.dir\examples\voice_demo.c.obj | residual_voice.lib C$:\Users\Mitchell$ Aikens\source\repos\vcpkg\installed\x64-windows\debug\lib\opus.lib || residual_voice.lib
+build voice_demo.exe: C_EXECUTABLE_LINKER__voice_demo_Debug CMakeFiles\voice_demo.dir\examples\voice_demo.c.obj | residual_voice_shim_udp.lib residual_voice_core.lib C$:\Users\Mitchell$ Aikens\source\repos\vcpkg\installed\x64-windows\debug\lib\opus.lib || residual_voice_core.lib residual_voice_shim_udp.lib
   CONFIG = Debug
   FLAGS = /DWIN32 /D_WINDOWS /Zi /Ob0 /Od /RTC1 -MDd
   LINK_FLAGS = /machine:x64 /debug /INCREMENTAL /subsystem:console
-  LINK_LIBRARIES = residual_voice.lib  ws2_32.lib  "C:\Users\Mitchell Aikens\source\repos\vcpkg\installed\x64-windows\debug\lib\opus.lib"  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
+  LINK_LIBRARIES = residual_voice_shim_udp.lib  residual_voice_core.lib  "C:\Users\Mitchell Aikens\source\repos\vcpkg\installed\x64-windows\debug\lib\opus.lib"  ws2_32.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
   OBJECT_DIR = CMakeFiles\voice_demo.dir
   POST_BUILD = C:\WINDOWS\system32\cmd.exe /C "cd /D "C:\Users\Mitchell Aikens\source\repos\ResidualAudioEngine\build" && C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noprofile -executionpolicy Bypass -file "C:/Users/Mitchell Aikens/source/repos/vcpkg/scripts/buildsystems/msbuild/applocal.ps1" -targetBinary "C:/Users/Mitchell Aikens/source/repos/ResidualAudioEngine/build/voice_demo.exe" -installedDir "C:/Users/Mitchell Aikens/source/repos/vcpkg/installed/x64-windows/debug/bin" -OutVariable out"
   PRE_LINK = cd .
@@ -260,7 +309,9 @@ build rebuild_cache: phony CMakeFiles\rebuild_cache.util
 
 build residual_relay: phony residual_relay.exe
 
-build residual_voice: phony residual_voice.lib
+build residual_voice_core: phony residual_voice_core.lib
+
+build residual_voice_shim_udp: phony residual_voice_shim_udp.lib
 
 build voice_demo: phony voice_demo.exe
 
@@ -272,7 +323,7 @@ build voice_demo: phony voice_demo.exe
 #############################################
 # Folder: C:/Users/Mitchell Aikens/source/repos/ResidualAudioEngine/build
 
-build all: phony residual_voice.lib voice_demo.exe residual_relay.exe
+build all: phony residual_voice_core.lib residual_voice_shim_udp.lib voice_demo.exe residual_relay.exe
 
 # =============================================================================
 # Built-in targets
@@ -281,14 +332,14 @@ build all: phony residual_voice.lib voice_demo.exe residual_relay.exe
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja C$:\Users\Mitchell$ Aikens\source\repos\ResidualAudioEngine\build\cmake_install.cmake: RERUN_CMAKE | C$:\Program$ Files\CMake\share\cmake-4.2\Modules\CMakeCInformation.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\CMakeCommonLanguageInclude.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\CMakeDependentOption.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\CMakeGenericSystem.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\CMakeInitializeConfigs.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\CMakeLanguageInformation.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\CMakeRCInformation.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\CMakeSystemSpecificInformation.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\CMakeSystemSpecificInitialize.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\CMakeCommonCompilerMacros.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\Clang-C.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\Clang.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Internal\CMakeCLinkerInformation.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Internal\CMakeCommonLinkerInformation.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Linker\LLD-C.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Linker\LLD.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Linker\MSVC.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Platform\Linker\Windows-LLD-C.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Platform\Linker\Windows-LLD.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Platform\Linker\Windows-MSVC.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Platform\Windows-Clang-C.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Platform\Windows-Clang.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Platform\Windows-Initialize.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Platform\Windows-MSVC.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Platform\Windows.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Platform\WindowsPaths.cmake C$:\Users\Mitchell$ Aikens\source\repos\ResidualAudioEngine\CMakeLists.txt C$:\Users\Mitchell$ Aikens\source\repos\vcpkg\installed\x64-windows\share\opus\OpusConfig.cmake C$:\Users\Mitchell$ Aikens\source\repos\vcpkg\installed\x64-windows\share\opus\OpusConfigVersion.cmake C$:\Users\Mitchell$ Aikens\source\repos\vcpkg\installed\x64-windows\share\opus\OpusTargets-debug.cmake C$:\Users\Mitchell$ Aikens\source\repos\vcpkg\installed\x64-windows\share\opus\OpusTargets-release.cmake C$:\Users\Mitchell$ Aikens\source\repos\vcpkg\installed\x64-windows\share\opus\OpusTargets.cmake C$:\Users\Mitchell$ Aikens\source\repos\vcpkg\scripts\buildsystems\vcpkg.cmake CMakeCache.txt CMakeFiles\4.2.1\CMakeCCompiler.cmake CMakeFiles\4.2.1\CMakeRCCompiler.cmake CMakeFiles\4.2.1\CMakeSystem.cmake
+build build.ninja C$:\Users\Mitchell$ Aikens\source\repos\ResidualAudioEngine\build\cmake_install.cmake: RERUN_CMAKE | C$:\Program$ Files\CMake\share\cmake-4.2\Modules\CMakeCCompiler.cmake.in C$:\Program$ Files\CMake\share\cmake-4.2\Modules\CMakeCCompilerABI.c C$:\Program$ Files\CMake\share\cmake-4.2\Modules\CMakeCInformation.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\CMakeCommonLanguageInclude.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\CMakeCompilerIdDetection.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\CMakeDependentOption.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\CMakeDetermineCCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\CMakeDetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\CMakeDetermineCompilerABI.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\CMakeDetermineCompilerId.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\CMakeDetermineCompilerSupport.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\CMakeDetermineRCCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\CMakeDetermineSystem.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\CMakeFindBinUtils.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\CMakeGenericSystem.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\CMakeInitializeConfigs.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\CMakeLanguageInformation.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\CMakeNinjaFindMake.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\CMakeParseImplicitIncludeInfo.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\CMakeParseImplicitLinkInfo.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\CMakeParseLibraryArchitecture.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\CMakeRCCompiler.cmake.in C$:\Program$ Files\CMake\share\cmake-4.2\Modules\CMakeRCInformation.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\CMakeSystem.cmake.in C$:\Program$ Files\CMake\share\cmake-4.2\Modules\CMakeSystemSpecificInformation.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\CMakeSystemSpecificInitialize.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\CMakeTestCCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\CMakeTestCompilerCommon.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\CMakeTestRCCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\ADSP-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\ARMCC-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\ARMClang-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\AppleClang-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\Borland-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\Bruce-C-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\CMakeCommonCompilerMacros.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\Clang-C.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\Clang-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\Clang-DetermineCompilerInternal.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\Clang-FindBinUtils.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\Clang.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\Compaq-C-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\Cray-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\CrayClang-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\Diab-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\Embarcadero-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\Fujitsu-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\FujitsuClang-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\GHS-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\GNU-C-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\HP-C-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\IAR-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\IBMCPP-C-DetermineVersionInternal.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\IBMClang-C-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\Intel-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\IntelLLVM-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\LCC-C-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\MSVC-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\NVHPC-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\NVIDIA-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\OpenWatcom-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\OrangeC-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\PGI-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\PathScale-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\Renesas-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\SCO-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\SDCC-C-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\SunPro-C-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\TI-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\TIClang-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\Tasking-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\TinyCC-C-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\VisualAge-C-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\Watcom-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\XL-C-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\XLClang-C-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\zOS-C-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Internal\CMakeCLinkerInformation.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Internal\CMakeCommonLinkerInformation.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Internal\CMakeDetermineLinkerId.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Internal\CMakeInspectCLinker.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Internal\FeatureTesting.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Linker\LLD-C.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Linker\LLD.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Linker\MSVC.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Platform\Linker\Windows-LLD-C.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Platform\Linker\Windows-LLD.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Platform\Linker\Windows-MSVC.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Platform\Windows-Clang-C.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Platform\Windows-Clang.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Platform\Windows-Initialize.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Platform\Windows-MSVC.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Platform\Windows.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Platform\WindowsPaths.cmake C$:\Users\Mitchell$ Aikens\source\repos\ResidualAudioEngine\CMakeLists.txt C$:\Users\Mitchell$ Aikens\source\repos\vcpkg\installed\x64-windows\share\opus\OpusConfig.cmake C$:\Users\Mitchell$ Aikens\source\repos\vcpkg\installed\x64-windows\share\opus\OpusConfigVersion.cmake C$:\Users\Mitchell$ Aikens\source\repos\vcpkg\installed\x64-windows\share\opus\OpusTargets-debug.cmake C$:\Users\Mitchell$ Aikens\source\repos\vcpkg\installed\x64-windows\share\opus\OpusTargets-release.cmake C$:\Users\Mitchell$ Aikens\source\repos\vcpkg\installed\x64-windows\share\opus\OpusTargets.cmake C$:\Users\Mitchell$ Aikens\source\repos\vcpkg\scripts\buildsystems\vcpkg.cmake CMakeCache.txt CMakeFiles\4.2.1\CMakeCCompiler.cmake CMakeFiles\4.2.1\CMakeRCCompiler.cmake CMakeFiles\4.2.1\CMakeSystem.cmake
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build C$:\Program$ Files\CMake\share\cmake-4.2\Modules\CMakeCInformation.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\CMakeCommonLanguageInclude.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\CMakeDependentOption.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\CMakeGenericSystem.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\CMakeInitializeConfigs.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\CMakeLanguageInformation.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\CMakeRCInformation.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\CMakeSystemSpecificInformation.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\CMakeSystemSpecificInitialize.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\CMakeCommonCompilerMacros.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\Clang-C.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\Clang.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Internal\CMakeCLinkerInformation.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Internal\CMakeCommonLinkerInformation.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Linker\LLD-C.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Linker\LLD.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Linker\MSVC.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Platform\Linker\Windows-LLD-C.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Platform\Linker\Windows-LLD.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Platform\Linker\Windows-MSVC.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Platform\Windows-Clang-C.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Platform\Windows-Clang.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Platform\Windows-Initialize.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Platform\Windows-MSVC.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Platform\Windows.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Platform\WindowsPaths.cmake C$:\Users\Mitchell$ Aikens\source\repos\ResidualAudioEngine\CMakeLists.txt C$:\Users\Mitchell$ Aikens\source\repos\vcpkg\installed\x64-windows\share\opus\OpusConfig.cmake C$:\Users\Mitchell$ Aikens\source\repos\vcpkg\installed\x64-windows\share\opus\OpusConfigVersion.cmake C$:\Users\Mitchell$ Aikens\source\repos\vcpkg\installed\x64-windows\share\opus\OpusTargets-debug.cmake C$:\Users\Mitchell$ Aikens\source\repos\vcpkg\installed\x64-windows\share\opus\OpusTargets-release.cmake C$:\Users\Mitchell$ Aikens\source\repos\vcpkg\installed\x64-windows\share\opus\OpusTargets.cmake C$:\Users\Mitchell$ Aikens\source\repos\vcpkg\scripts\buildsystems\vcpkg.cmake CMakeCache.txt CMakeFiles\4.2.1\CMakeCCompiler.cmake CMakeFiles\4.2.1\CMakeRCCompiler.cmake CMakeFiles\4.2.1\CMakeSystem.cmake: phony
+build C$:\Program$ Files\CMake\share\cmake-4.2\Modules\CMakeCCompiler.cmake.in C$:\Program$ Files\CMake\share\cmake-4.2\Modules\CMakeCCompilerABI.c C$:\Program$ Files\CMake\share\cmake-4.2\Modules\CMakeCInformation.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\CMakeCommonLanguageInclude.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\CMakeCompilerIdDetection.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\CMakeDependentOption.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\CMakeDetermineCCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\CMakeDetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\CMakeDetermineCompilerABI.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\CMakeDetermineCompilerId.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\CMakeDetermineCompilerSupport.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\CMakeDetermineRCCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\CMakeDetermineSystem.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\CMakeFindBinUtils.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\CMakeGenericSystem.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\CMakeInitializeConfigs.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\CMakeLanguageInformation.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\CMakeNinjaFindMake.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\CMakeParseImplicitIncludeInfo.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\CMakeParseImplicitLinkInfo.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\CMakeParseLibraryArchitecture.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\CMakeRCCompiler.cmake.in C$:\Program$ Files\CMake\share\cmake-4.2\Modules\CMakeRCInformation.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\CMakeSystem.cmake.in C$:\Program$ Files\CMake\share\cmake-4.2\Modules\CMakeSystemSpecificInformation.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\CMakeSystemSpecificInitialize.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\CMakeTestCCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\CMakeTestCompilerCommon.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\CMakeTestRCCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\ADSP-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\ARMCC-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\ARMClang-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\AppleClang-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\Borland-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\Bruce-C-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\CMakeCommonCompilerMacros.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\Clang-C.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\Clang-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\Clang-DetermineCompilerInternal.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\Clang-FindBinUtils.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\Clang.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\Compaq-C-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\Cray-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\CrayClang-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\Diab-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\Embarcadero-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\Fujitsu-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\FujitsuClang-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\GHS-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\GNU-C-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\HP-C-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\IAR-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\IBMCPP-C-DetermineVersionInternal.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\IBMClang-C-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\Intel-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\IntelLLVM-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\LCC-C-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\MSVC-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\NVHPC-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\NVIDIA-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\OpenWatcom-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\OrangeC-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\PGI-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\PathScale-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\Renesas-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\SCO-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\SDCC-C-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\SunPro-C-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\TI-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\TIClang-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\Tasking-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\TinyCC-C-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\VisualAge-C-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\Watcom-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\XL-C-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\XLClang-C-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Compiler\zOS-C-DetermineCompiler.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Internal\CMakeCLinkerInformation.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Internal\CMakeCommonLinkerInformation.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Internal\CMakeDetermineLinkerId.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Internal\CMakeInspectCLinker.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Internal\FeatureTesting.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Linker\LLD-C.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Linker\LLD.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Linker\MSVC.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Platform\Linker\Windows-LLD-C.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Platform\Linker\Windows-LLD.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Platform\Linker\Windows-MSVC.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Platform\Windows-Clang-C.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Platform\Windows-Clang.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Platform\Windows-Initialize.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Platform\Windows-MSVC.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Platform\Windows.cmake C$:\Program$ Files\CMake\share\cmake-4.2\Modules\Platform\WindowsPaths.cmake C$:\Users\Mitchell$ Aikens\source\repos\ResidualAudioEngine\CMakeLists.txt C$:\Users\Mitchell$ Aikens\source\repos\vcpkg\installed\x64-windows\share\opus\OpusConfig.cmake C$:\Users\Mitchell$ Aikens\source\repos\vcpkg\installed\x64-windows\share\opus\OpusConfigVersion.cmake C$:\Users\Mitchell$ Aikens\source\repos\vcpkg\installed\x64-windows\share\opus\OpusTargets-debug.cmake C$:\Users\Mitchell$ Aikens\source\repos\vcpkg\installed\x64-windows\share\opus\OpusTargets-release.cmake C$:\Users\Mitchell$ Aikens\source\repos\vcpkg\installed\x64-windows\share\opus\OpusTargets.cmake C$:\Users\Mitchell$ Aikens\source\repos\vcpkg\scripts\buildsystems\vcpkg.cmake CMakeCache.txt CMakeFiles\4.2.1\CMakeCCompiler.cmake CMakeFiles\4.2.1\CMakeRCCompiler.cmake CMakeFiles\4.2.1\CMakeSystem.cmake: phony
 
 
 #############################################

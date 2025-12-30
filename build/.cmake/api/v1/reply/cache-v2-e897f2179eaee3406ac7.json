@@ -135,10 +135,10 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "No help, variable specified on the command line."
+					"value" : "C compiler"
 				}
 			],
-			"type" : "FILEPATH",
+			"type" : "STRING",
 			"value" : "C:/Program Files/LLVM/bin/clang-cl.exe"
 		},
 		{
@@ -1087,10 +1087,10 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "No help, variable specified on the command line."
+					"value" : "The CMake toolchain file"
 				}
 			],
-			"type" : "STRING",
+			"type" : "FILEPATH",
 			"value" : "C:/Users/Mitchell Aikens/source/repos/vcpkg/scripts/buildsystems/vcpkg.cmake"
 		},
 		{

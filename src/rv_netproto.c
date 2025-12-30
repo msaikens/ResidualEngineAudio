@@ -1,12 +1,12 @@
 #include "rv_netproto.h"
 #include <string.h>
 
-static void rv_hdr_init(rv_pkt_hdr_t* h, uint8_t type, uint16_t speaker_id, uint16_t seq, uint16_t payload_len) {
+static void rv_hdr_init(rv_pkt_hdr_t* h, uint8_t type, uint16_t speaker_id, uint16_t seq, uint16_t payload_len, uint8_t flags) {
     memset(h, 0, sizeof(*h));
     h->magic = rv_htonl32(RV_MAGIC);
     h->version = RV_PROTO_VER;
     h->type = type;
-    h->flags = 0;
+    h->flags = flags;
     h->speaker_id = rv_htons16(speaker_id);
     h->seq = rv_htons16(seq);
     h->payload_len = rv_htons16(payload_len);
@@ -19,7 +19,7 @@ int rv_build_join_packet(uint8_t* out, int out_cap, uint64_t session_id, uint16_
     if (out_cap < need) return -2;
 
     rv_pkt_hdr_t h;
-    rv_hdr_init(&h, RV_PKT_JOIN, 0, 0, payload_len);
+    rv_hdr_init(&h, RV_PKT_JOIN, 0, 0, payload_len, 0);
 
     rv_join_payload_t p;
     memset(&p, 0, sizeof(p));
@@ -32,9 +32,10 @@ int rv_build_join_packet(uint8_t* out, int out_cap, uint64_t session_id, uint16_
     return need;
 }
 
-int rv_build_voice_packet(uint8_t* out, int out_cap,
-                          uint16_t speaker_id, uint16_t seq,
-                          const uint8_t* payload, uint16_t payload_len) {
+int rv_build_voice_packet_ex(uint8_t* out, int out_cap,
+                             uint16_t speaker_id, uint16_t seq,
+                             uint8_t flags,
+                             const uint8_t* payload, uint16_t payload_len) {
     if (!out || !payload) return -1;
     if (payload_len == 0) return -2;
 
@@ -42,7 +43,7 @@ int rv_build_voice_packet(uint8_t* out, int out_cap,
     if (out_cap < need) return -3;
 
     rv_pkt_hdr_t h;
-    rv_hdr_init(&h, RV_PKT_VOICE, speaker_id, seq, payload_len);
+    rv_hdr_init(&h, RV_PKT_VOICE, speaker_id, seq, payload_len, flags);
 
     memcpy(out, &h, sizeof(h));
     memcpy(out + sizeof(h), payload, payload_len);
@@ -91,6 +92,7 @@ int rv_parse_join_payload(const uint8_t* buf, int len, uint64_t* out_session_id,
 
 int rv_parse_voice_packet(const uint8_t* buf, int len,
                           uint16_t* out_speaker_id, uint16_t* out_seq,
+                          uint8_t* out_flags,
                           const uint8_t** out_payload, uint16_t* out_payload_len) {
     rv_pkt_hdr_t h;
     int r = rv_parse_packet_header(buf, len, &h);
@@ -99,6 +101,7 @@ int rv_parse_voice_packet(const uint8_t* buf, int len,
 
     if (out_speaker_id) *out_speaker_id = h.speaker_id;
     if (out_seq) *out_seq = h.seq;
+    if (out_flags) *out_flags = h.flags;
     if (out_payload_len) *out_payload_len = h.payload_len;
     if (out_payload) *out_payload = buf + sizeof(rv_pkt_hdr_t);
 

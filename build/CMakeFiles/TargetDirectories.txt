@@ -1,4 +1,5 @@
-C:/Users/Mitchell Aikens/source/repos/ResidualAudioEngine/build/CMakeFiles/residual_voice.dir
+C:/Users/Mitchell Aikens/source/repos/ResidualAudioEngine/build/CMakeFiles/residual_voice_core.dir
+C:/Users/Mitchell Aikens/source/repos/ResidualAudioEngine/build/CMakeFiles/residual_voice_shim_udp.dir
 C:/Users/Mitchell Aikens/source/repos/ResidualAudioEngine/build/CMakeFiles/voice_demo.dir
 C:/Users/Mitchell Aikens/source/repos/ResidualAudioEngine/build/CMakeFiles/residual_relay.dir
 C:/Users/Mitchell Aikens/source/repos/ResidualAudioEngine/build/CMakeFiles/edit_cache.dir
