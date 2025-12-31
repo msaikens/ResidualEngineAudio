@@ -281,11 +281,18 @@ FETCHCONTENT_FULLY_DISCONNECTED:BOOL=OFF
 FETCHCONTENT_QUIET:BOOL=ON
 
 //When not empty, overrides where to find pre-populated content
+// for opus
+FETCHCONTENT_SOURCE_DIR_OPUS:PATH=
+
+//When not empty, overrides where to find pre-populated content
 // for opus_cmake
 FETCHCONTENT_SOURCE_DIR_OPUS_CMAKE:PATH=
 
 //Enables UPDATE_DISCONNECTED behavior for all content population
 FETCHCONTENT_UPDATES_DISCONNECTED:BOOL=OFF
+
+//Enables UPDATE_DISCONNECTED behavior just for population of opus
+FETCHCONTENT_UPDATES_DISCONNECTED_OPUS:BOOL=OFF
 
 //Enables UPDATE_DISCONNECTED behavior just for population of opus_cmake
 FETCHCONTENT_UPDATES_DISCONNECTED_OPUS_CMAKE:BOOL=OFF
@@ -299,7 +306,6 @@ OPUS_ASSERTIONS:BOOL=OFF
 //build programs.
 OPUS_BUILD_PROGRAMS:BOOL=OFF
 
-//build shared library.
 OPUS_BUILD_SHARED_LIBRARY:BOOL=OFF
 
 //build tests.
@@ -381,7 +387,7 @@ OPUS_X86_PRESUME_SSE2:BOOL=ON
 OPUS_X86_PRESUME_SSE4_1:BOOL=OFF
 
 //Value Computed by CMake
-Opus_BINARY_DIR:STATIC=C:/Users/Mitchell Aikens/source/repos/ResidualAudioEngine/build/_deps/opus_cmake-build
+Opus_BINARY_DIR:STATIC=C:/Users/Mitchell Aikens/source/repos/ResidualAudioEngine/build/_deps/opus-build
 
 //The directory containing a CMake configuration file for Opus.
 Opus_DIR:PATH=C:/Users/Mitchell Aikens/source/repos/vcpkg/installed/x64-windows/share/opus
@@ -390,7 +396,13 @@ Opus_DIR:PATH=C:/Users/Mitchell Aikens/source/repos/vcpkg/installed/x64-windows/
 Opus_IS_TOP_LEVEL:STATIC=OFF
 
 //Value Computed by CMake
-Opus_SOURCE_DIR:STATIC=C:/Users/Mitchell Aikens/source/repos/ResidualAudioEngine/build/_deps/opus_cmake-src
+Opus_SOURCE_DIR:STATIC=C:/Users/Mitchell Aikens/source/repos/ResidualAudioEngine/build/_deps/opus-src
+
+//Build example apps
+RV_BUILD_DEMOS:BOOL=ON
+
+//Build relay server
+RV_BUILD_RELAY:BOOL=ON
 
 //Value Computed by CMake
 ResidualVoiceEngine_BINARY_DIR:STATIC=C:/Users/Mitchell Aikens/source/repos/ResidualAudioEngine/build

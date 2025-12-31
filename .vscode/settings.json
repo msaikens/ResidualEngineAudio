@@ -1,13 +1,6 @@
 {
-  "cmake.generator": "Ninja",
-  "cmake.buildDirectory": "${workspaceFolder}/build",
-
+  "cmake.useCMakePresets": "always",
   "clangd.arguments": [
-    "--compile-commands-dir=${workspaceFolder}/build",
     "--background-index"
-  ],
-  "cmake.configureSettings": {
-    "CMAKE_TOOLCHAIN_FILE": "C:/Users/Mitchell Aikens/source/repos/vcpkg/scripts/buildsystems/vcpkg.cmake"
-  }
+  ]
 }
-

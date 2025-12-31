@@ -2,7 +2,7 @@
 	"InstallScripts" : 
 	[
 		"C:/Users/Mitchell Aikens/source/repos/ResidualAudioEngine/build/cmake_install.cmake",
-		"C:/Users/Mitchell Aikens/source/repos/ResidualAudioEngine/build/_deps/opus_cmake-build/cmake_install.cmake"
+		"C:/Users/Mitchell Aikens/source/repos/ResidualAudioEngine/build/_deps/opus-build/cmake_install.cmake"
 	],
 	"Parallel" : false
 }
