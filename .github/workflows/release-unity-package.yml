@@ -7,6 +7,11 @@ on:
       - 'v*.*.*-*'
   workflow_dispatch:
 
+permissions:
+  contents: write
+  packages: write
+  pull-requests: write
+
 jobs:
   build-and-package:
     runs-on: windows-latest
