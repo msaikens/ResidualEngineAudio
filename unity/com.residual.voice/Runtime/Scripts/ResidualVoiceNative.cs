@@ -81,5 +81,8 @@ namespace Residual.Voice
             uint outPcmCapacity,
             byte[] outMessage,
             uint outMessageCapacity);
+
+        [DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl)]
+        internal static extern int rv_voice_set_local_state(IntPtr voice, ref RvVoicePlayerState state);
     }
 }

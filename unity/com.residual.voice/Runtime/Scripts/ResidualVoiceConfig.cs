@@ -78,7 +78,24 @@ internal struct RvVoiceConfig
     [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)]
     public uint[] reserved_u32;
 }
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct RvVec3
+    {
+        public float x;
+        public float y;
+        public float z;
+    }
 
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct RvVoicePlayerState
+    {
+        public RvVec3 position;
+        public RvVec3 forward;
+
+        public byte ptt_down;
+        public byte radio_enabled;
+        public byte radio_channel;
+    }
     [StructLayout(LayoutKind.Sequential)]
     internal struct RvVoiceEventFlat
     {

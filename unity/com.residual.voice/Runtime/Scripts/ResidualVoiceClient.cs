@@ -1,6 +1,7 @@
 using System;
 using System.Runtime.InteropServices;
 using System.Text;
+using UnityEngine;
 
 namespace Residual.Voice
 {
@@ -288,6 +289,55 @@ namespace Residual.Voice
                 : Marshal.PtrToStringAnsi(ptr) ?? $"Residual voice native call failed with code {result}.";
 
             throw new InvalidOperationException(message);
+        }
+
+        public void SetLocalState(
+            Vector3 position,
+            Vector3 forward,
+            bool pushToTalkDown,
+            bool radioEnabled = false,
+            byte radioChannel = 0)
+        {
+        
+            EnsureCreated();
+
+            if (radioChannel > 15)
+            {
+                throw new ArgumentOutOfRangeException(nameof(radioChannel), "Radio channel must be 0..15.");
+            }
+
+            if (forward.sqrMagnitude <= 0.0001f)
+            {
+                forward = Vector3.forward;
+            }
+        
+            else
+            {
+                forward.Normalize();
+            }
+
+            var state = new RvVoicePlayerState
+            {
+                position = new RvVec3
+                {
+                    x = position.x,
+                    y = position.y,
+                    z = position.z
+                },
+            
+                forward = new RvVec3
+                {
+                    x = forward.x,
+                    y = forward.y,
+                    z = forward.z
+                },
+            
+                ptt_down = pushToTalkDown ? (byte)1 : (byte)0,
+                radio_enabled = radioEnabled ? (byte)1 : (byte)0,
+                radio_channel = (byte)(radioChannel & 0x0F)
+            };
+
+            ThrowIfError(ResidualVoiceNative.rv_voice_set_local_state(_handle, ref state));
         }
     }
 }
