@@ -83,8 +83,6 @@ tests/**/obj/
 [Bb]uilds/
 [Ll]ogs/
 [Uu]ser[Ss]ettings/
-*.csproj
-*.sln
 *.sln.DotSettings.user
 
 # Do not ignore package asmdef or package source files.

@@ -50,7 +50,7 @@ Write-Host "Building .NET smoke test..."
 
 Run-Checked "dotnet" @(
     "build",
-    $SmokeProject
+    "tests\ResidualVoiceSmoke\ResidualVoiceSmoke.csproj"
 )
 
 if (!(Test-Path $SmokeOutputDir)) {
@@ -71,7 +71,7 @@ Run-Checked "dotnet" @(
     "run",
     "--no-build",
     "--project",
-    $SmokeProject
+    "tests\ResidualVoiceSmoke\ResidualVoiceSmoke.csproj"
 )
 
 Write-Host "Smoke test passed."

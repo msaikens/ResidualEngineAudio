@@ -3,9 +3,15 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net8.0</TargetFramework>
-    <PlatformTarget>x64</PlatformTarget>
-    <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
+
+  <Target Name="CopyNativeLibrary" AfterTargets="Build">
+    <Copy
+      SourceFiles="..\..\unity\com.residual.voice\Runtime\Plugins\Windows\x86_64\residual_voice.dll"
+      DestinationFolder="$(OutDir)"
+      SkipUnchangedFiles="true" />
+  </Target>
 
 </Project>
