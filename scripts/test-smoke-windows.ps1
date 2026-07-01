@@ -46,6 +46,26 @@ if (!(Test-Path $PluginPath)) {
     throw "Expected Unity plugin DLL was not found: $PluginPath"
 }
 
+Write-Host "Validating Unity package layout..."
+
+$RequiredPackageFiles = @(
+    "unity\com.residual.voice\package.json",
+    "unity\com.residual.voice\Runtime\ResidualVoice.asmdef",
+    "unity\com.residual.voice\Runtime\Scripts\ResidualVoiceNative.cs",
+    "unity\com.residual.voice\Runtime\Scripts\ResidualVoiceConfig.cs",
+    "unity\com.residual.voice\Runtime\Scripts\ResidualVoiceClient.cs",
+    "unity\com.residual.voice\Runtime\Scripts\IResidualVoiceTransport.cs",
+    "unity\com.residual.voice\Runtime\Scripts\ResidualVoiceLoopbackTransport.cs",
+    "unity\com.residual.voice\Runtime\Scripts\ResidualVoiceTransportBinding.cs",
+    "unity\com.residual.voice\Runtime\Scripts\ResidualVoicePcmUtility.cs"
+)
+
+foreach ($File in $RequiredPackageFiles) {
+    if (!(Test-Path $File)) {
+        throw "Required Unity package file is missing: $File"
+    }
+}
+
 Write-Host "Building .NET smoke test..."
 
 Run-Checked "dotnet" @(
