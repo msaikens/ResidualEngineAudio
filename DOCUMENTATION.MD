@@ -1,431 +1,686 @@
-ResidualVoiceEngine — Complete Documentation
+# Residual Voice Engine Documentation
+
+Residual Voice Engine is a native C voice engine with Unity package bindings for **Residual**.
+
+This document describes the current project architecture, Unity package layout, native build process, validation workflow, release process, and near-term roadmap.
+
+Current candidate:
+
+```text
+v0.2.0-rc.1
+```
+
+## 1. Project status
+
+Residual Voice Engine is currently a **preview release candidate**.
+
+The current package is suitable for:
+
+- Fresh Unity package import testing
+- Windows x86_64 local loopback validation
+- Microphone capture validation
+- Native encode/decode validation
+- Unity decoded PCM playback validation
+- Package release workflow testing
+
+The current package is **not yet** a drop-in production multiplayer voice solution.
+
+Not included yet:
+
+- Production Unity network transport
+- Steam Networking transport
+- Unity Relay transport
+- Mirror/FishNet transport
+- Linux/macOS native plugin builds
+- Stable `1.0.0` API guarantees
+
+## 2. Repository layout
+
+```text
+.
+├── include/
+│   └── residual_voice/
+│       └── voice.h
+├── src/
+│   ├── voice.c
+│   ├── rv_netproto.c
+│   ├── rv_netproto.h
+│   ├── rv_opus_jitter.c
+│   └── rv_opus_jitter.h
+├── tests/
+│   └── ResidualVoiceSmoke/
+├── scripts/
+│   └── test-smoke-windows.ps1
+├── unity/
+│   └── com.residual.voice/
+│       ├── package.json
+│       ├── README.md
+│       ├── CHANGELOG.md
+│       ├── LICENSE.md
+│       ├── Runtime/
+│       │   ├── ResidualVoice.asmdef
+│       │   ├── Plugins/
+│       │   │   └── Windows/x86_64/residual_voice.dll
+│       │   └── Scripts/
+│       └── Samples~/
+│           ├── BasicLoopback/
+│           └── Diagnostics/
+├── .github/
+│   └── workflows/
+├── README.md
+├── DOCUMENTATION.md
+└── SECURITY.md
+```
+
+## 3. Native engine overview
+
+The native engine owns the low-level voice pipeline.
+
+High-level native responsibilities:
+
+- Voice client creation and destruction
+- PCM frame submission
+- Voice packet generation
+- Voice packet ingest
+- Opus encode/decode path
+- Jitter buffering
+- Flat event polling for Unity/C# interop
+- Protocol metadata for future networking
+
+The native public API is exposed through:
+
+```text
+include/residual_voice/voice.h
+```
+
+Important native concepts:
+
+```text
+rv_voice_t
+rv_voice_config_t
+rv_voice_connect_info_t
+rv_voice_player_state_t
+rv_voice_event_flat_t
+```
 
-ResidualVoiceEngine is a transport-agnostic, engine-neutral voice communication core written in C. It is designed to be embedded into any engine or runtime (Unity, Unreal, custom C/C++, C#, etc.) without committing to a specific networking stack, platform API, or audio renderer.
+Important native calls:
+
+```text
+rv_voice_create
+rv_voice_destroy
+rv_voice_connect
+rv_voice_submit_capture_pcm
+rv_voice_tick
+rv_voice_poll_outgoing_packet
+rv_voice_ingest_packet
+rv_voice_poll_event_flat
+rv_voice_get_required_frame_samples
+rv_voice_get_sample_rate
+rv_voice_get_frame_ms
+rv_voice_result_to_string
+```
+
+## 4. Unity package overview
 
-This document explains what the engine does, what it does not do, and how to integrate it correctly.
+The Unity package lives at:
 
-1. What ResidualVoiceEngine Is
+```text
+unity/com.residual.voice
+```
 
-ResidualVoiceEngine provides the hard, error-prone parts of voice chat:
+Package name:
 
-Opus encoding and decoding
+```text
+com.residual.voice
+```
 
-Per-speaker jitter buffers
+Current package target:
 
-Packet construction and parsing
+```text
+Windows x86_64
+Unity 2022.3+
+```
 
-Capture gating (PTT vs always-on)
+Install from Git:
 
-Metadata flags for routing (proximity vs radio, radio channels)
+```text
+https://github.com/msaikens/ResidualEngineAudio.git?path=/unity/com.residual.voice
+```
 
-Event-based decoded PCM output
+Install a specific release candidate:
 
-Optional mixed PCM output
+```text
+https://github.com/msaikens/ResidualEngineAudio.git?path=/unity/com.residual.voice#v0.2.0-rc.1
+```
 
-Lock-free async capture path for audio threads
+Install from disk during local development:
 
-It is not a full voice system.
+```text
+unity/com.residual.voice/package.json
+```
 
-2. What the Engine Does NOT Do (By Design)
+## 5. Unity runtime components
 
-ResidualVoiceEngine intentionally does not:
+Main Unity runtime scripts:
 
-Open sockets
+```text
+ResidualVoiceClient
+ResidualVoiceRig
+ResidualVoiceMicInput
+ResidualVoicePlaybackSource
+ResidualVoiceLoopbackTransport
+ResidualVoiceTransportBinding
+ResidualVoicePushToTalk
+ResidualVoicePcmUtility
+ResidualVoicePlaybackBuffer
+IResidualVoiceTransport
+```
 
-Use Steam, EOS, Unreal, or platform APIs
+### ResidualVoiceClient
 
-Perform proximity distance checks
+Managed wrapper around the native voice engine.
 
-Perform 3D spatialization or HRTF
+Responsibilities:
 
-Apply occlusion or obstruction
+- Create/destroy native client
+- Submit captured PCM
+- Poll outgoing packets
+- Ingest incoming packets
+- Poll native events
+- Raise decoded PCM events
+- Apply local player state
 
-Encrypt packets
+### ResidualVoiceRig
 
-Authenticate users
+Convenience MonoBehaviour for wiring the client, microphone, playback, and transport.
 
-Manage sessions, lobbies, or matchmaking
+Typical sample settings:
 
-All of the above are host responsibilities.
-This separation keeps the engine small, testable, portable, and future-proof.
+```text
+Sample Rate Hz: 48000
+Frame Ms: 20
+Max Players: 64
+Jitter Target Ms: 60
+Jitter Max Ms: 200
+Always On: enabled
+Create On Start: enabled
+Connect On Start: enabled
+Start Mic On Start: enabled
+Use Loopback Transport: enabled
+```
 
-3. High-Level Architecture
+### ResidualVoiceMicInput
 
-ResidualVoiceEngine follows a pull/push model.
+Unity microphone capture component.
 
-The engine:
+Responsibilities:
 
-Produces packets
+- Start Unity microphone capture
+- Read microphone ring buffer
+- Convert Unity float samples to PCM16
+- Accumulate exact native frame sizes
+- Submit frames to `ResidualVoiceClient`
 
-Consumes packets
+Expected frame size for 48 kHz / 20 ms:
 
-Produces decoded audio events
+```text
+960 samples
+```
 
-The host:
+### ResidualVoicePlaybackSource
 
-Owns networking
+Unity decoded PCM playback component.
 
-Owns audio playback
+Responsibilities:
 
-Owns spatialization and routing
+- Receive decoded PCM frames
+- Queue per-speaker playback buffers
+- Mix decoded PCM into Unity audio output
+- Keep playback source alive
 
-Typical flow:
+Requires:
 
-Audio callback captures PCM
+```text
+AudioSource
+```
 
-Host submits PCM to engine
+### ResidualVoiceLoopbackTransport
 
-Engine encodes and queues packets
+Local testing transport.
 
-Host polls outgoing packets and sends them
+It sends outgoing packets back into the same local client. This validates the package pipeline but does not represent real multiplayer behavior.
 
-Host receives packets from network
+### ResidualVoiceTransportBinding
 
-Host feeds packets into engine
+Binds a voice client to an `IResidualVoiceTransport`.
 
-Engine decodes audio
+High-level behavior:
 
-Host consumes PCM events or mixed output
+```text
+client outgoing packet → transport send
+transport receive → client ingest packet
+client tick → decoded PCM event
+```
 
-4. Versioning and API Stability
+### ResidualVoicePushToTalk
 
-ResidualVoiceEngine uses major/minor API versioning.
+Optional local state helper for proximity/radio push-to-talk testing.
 
-Major mismatch → creation fails
+## 6. Unity sample scenes
 
-Minor higher than supported → creation fails
+Samples live under:
 
-Lower minor versions are accepted
+```text
+unity/com.residual.voice/Samples~/
+```
 
-Version is passed in rv_voice_config_t.api_version:
+### BasicLoopback
 
-Upper 16 bits: major
+Purpose:
 
-Lower 16 bits: minor
+Validate the package end-to-end on one machine.
 
-This guarantees forward safety and ABI stability.
+Flow:
 
-5. Core Types
-Engine Handle
+```text
+Unity microphone
+  → native encode
+  → outgoing packet
+  → local loopback transport
+  → native ingest
+  → native decode
+  → Unity playback
+```
 
-rv_voice_t is an opaque handle.
-You never access its fields directly.
+Expected scene:
 
-Configuration (rv_voice_config_t)
+```text
+Main Camera
+  - Camera
+  - Audio Listener
 
-Key fields:
+Residual Voice Basic Loopback
+  - AudioSource
+  - ResidualVoiceRig
+  - ResidualVoiceMicInput
+  - ResidualVoicePlaybackSource
+```
 
-sample_rate_hz (recommended: 48000)
+Validation signs:
 
-frame_ms (recommended: 20)
+```text
+Microphone Position Debug moves
+Peak Level Debug rises when speaking
+Submitted Frame Count increases
+Queued Frame Count increases when decoded PCM arrives
+Last Queued Peak Debug rises when speaking
+Audio playback is audible
+```
 
-max_players (recommended: ≤16)
+### Diagnostics
 
-capture_mode (PTT vs always-on)
+Purpose:
 
-Frame size is derived as:
+Troubleshoot Unity audio input/output problems.
 
-frame_samples = sample_rate_hz * frame_ms / 1000
+Diagnostic components:
 
-This value must be respected exactly.
+```text
+ResidualVoiceMicDeviceProbe
+ResidualVoicePlaybackProbe
+```
 
-Capture Mode
+Use Diagnostics when:
 
-Two capture modes are supported:
+- Unity microphone position moves but peak stays zero.
+- You need to identify the exact Unity microphone device name.
+- You need to verify that Unity audio output works.
+- You need to isolate whether a problem is Unity audio setup or Residual voice pipeline behavior.
 
-PTT_ONLY
+## 7. Native packet protocol
 
-Voice transmits only while PTT is pressed
+The native core includes packet protocol helpers:
 
-ALWAYS_ON
+```text
+rv_netproto.c
+rv_netproto.h
+```
 
-Proximity chat transmits continuously
+These files provide the packet format layer.
 
-Radio chat still requires PTT
+They do **not** provide a full network transport.
 
-This directly supports designs like Phasmophobia.
+Current distinction:
 
-Local Player State
+```text
+rv_netproto = packet format / serialization
+transport = how packets move across the network
+Unity integration = how game objects route voice between players
+```
 
-The host provides player state via rv_voice_set_local_state():
+The current Unity package includes local loopback validation only.
 
-ptt_down
+Future transports may include:
 
-radio_enabled
+- Raw UDP
+- Steam Networking
+- Unity Netcode for GameObjects
+- Unity Relay
+- Mirror
+- FishNet
+- EOS
+- Custom relay/server transport
 
-radio_channel
+## 8. Intended multiplayer architecture
 
-The engine encodes this state into packet flags.
-The engine does not interpret position or orientation.
+The target multiplayer architecture is:
 
-6. Threading Model (Important)
+```text
+Client A microphone
+  → Client A native encode
+  → Client A outgoing packet
+  → network transport
+  → Client B packet receive
+  → Client B native ingest
+  → Client B native decode
+  → Client B Unity playback
+```
 
-ResidualVoiceEngine is mostly single-threaded, with one exception.
+The current Basic Loopback sample is simpler:
 
-Safe multi-thread usage
+```text
+One local client
+  → outgoing packet
+  → same-client local loopback
+  → ingest
+  → decode
+  → playback
+```
 
-Audio thread:
+The next correct networking milestone is a **two-peer local loopback** sample:
 
-rv_voice_submit_capture_pcm_async()
+```text
+Voice Sender
+  → emits packets
 
-Game / network thread:
+Local Peer Bridge
+  → passes packets
 
-All other API calls
+Voice Receiver
+  → ingests and plays packets
+```
 
-Async capture uses a lock-free single-producer / single-consumer ring buffer.
-It never blocks and is safe for realtime audio callbacks.
+This should come before UDP or Steam Networking.
 
-What is NOT thread-safe
+## 9. Native build
 
-Calling tick, ingest, or poll concurrently
+Windows requirements:
 
-Calling engine APIs from multiple non-audio threads
+- Visual Studio C++ build tools
+- CMake
+- PowerShell
+- .NET SDK
 
-If needed, the host must serialize access.
+Run from repository root:
 
-7. Lifecycle API
-Create / Destroy
+```powershell
+.\scripts\test-smoke-windows.ps1
+```
 
-Allocates all internal state
+Expected success:
 
-Initializes Opus encoder/decoders
+```text
+Packet loopback smoke test passed.
+```
 
-Initializes jitter buffers and queues
+If Unity is open, it may lock:
 
-Destroy releases everything.
+```text
+unity/com.residual.voice/Runtime/Plugins/Windows/x86_64/residual_voice.dll
+```
 
-Connect / Disconnect
+Close Unity before rebuilding or copying the native plugin.
 
-rv_voice_connect():
+## 10. Smoke test
 
-Stores session ID and player ID
+The smoke test validates native behavior outside Unity.
 
-Builds a JOIN packet
+It should confirm:
 
-Queues it for the host to send
+- Native DLL builds
+- Native DLL can be loaded by .NET
+- Voice client can be created
+- Voice client can be destroyed
+- Packet loopback path works
+- PCM decode event is produced
 
-The engine does not open sockets or connect anywhere.
+Run:
 
-8. Audio Capture
-Required frame size
+```powershell
+.\scripts\test-smoke-windows.ps1
+```
 
-Every submitted capture frame must contain exactly:
+Passing output should include:
 
-frame_samples samples per channel.
+```text
+Packet loopback smoke test passed.
+```
 
-Submitting any other size is invalid.
+## 11. Unity validation workflow
 
-Synchronous capture
+Use this workflow before tagging a release candidate:
 
-rv_voice_submit_capture_pcm()
+1. Close Unity.
+2. Run the smoke test.
+3. Open a fresh Unity project.
+4. Install the package from disk or Git URL.
+5. Import the Basic Loopback sample.
+6. Open the Basic Loopback scene.
+7. Press Play.
+8. Confirm microphone capture and playback.
+9. Import Diagnostics only if needed.
+10. Confirm no red console errors.
 
-Applies capture gating (PTT / always-on)
+Fresh Git URL test:
 
-Encodes immediately
+```text
+https://github.com/msaikens/ResidualEngineAudio.git?path=/unity/com.residual.voice#v0.2.0-rc.1
+```
 
-Queues packets
+## 12. Troubleshooting
 
-Asynchronous capture (recommended)
+### Unity imports but there is no audio
 
-rv_voice_submit_capture_pcm_async()
+Check:
 
-Safe for audio callbacks
+- There is exactly one active `AudioListener`.
+- `AudioSource` is enabled.
+- `AudioSource` is not muted.
+- `AudioSource` volume is `1`.
+- `AudioSource` spatial blend is `0`.
+- Unity Game view audio is not muted.
+- Windows output device is correct.
+- The Basic Loopback sample works before testing a custom scene.
 
-Lock-free
+### Microphone position moves but peak stays zero
 
-Drops frames if queue is full
+Unity is recording from a silent or wrong input device.
 
-Encoding happens later in rv_voice_tick()
+Use:
 
-9. Networking Integration
-Outgoing packets
+```text
+Samples~/Diagnostics/ResidualVoiceMicDeviceProbe
+```
 
-The engine never sends packets itself.
+Find the device where peak rises while speaking. Copy that exact device name into:
 
-The host polls packets:
+```text
+ResidualVoiceMicInput → Device Name
+```
 
-If rv_voice_poll_outgoing() returns 1 → send packet
+### Playback works briefly, then queues silence
 
-If 0 → no packet
+This was addressed by the native jitter-buffer fix.
 
-If <0 → error
+The jitter buffer should not emit endless PLC silence after the stream becomes idle.
 
-Incoming packets
+If the issue returns:
 
-The host feeds received packets:
+- Confirm Unity is using the rebuilt DLL.
+- Close Unity.
+- Rebuild the native plugin.
+- Reopen Unity.
+- Test Basic Loopback again.
 
-rv_voice_ingest_packet(v, data, size, now_ms)
+### Smoke test passes but Unity still behaves like an old build
 
-now_ms must be a monotonic millisecond clock.
-It is used for speaking timeout detection.
+Unity may be holding the old native DLL.
 
-10. Engine Tick
+Fix:
 
-rv_voice_tick(v, now_ms) performs:
+```text
+Close Unity
+Run smoke/build script
+Reopen Unity
+Retest
+```
 
-Encoding queued capture frames
+### Release workflow fails with 403
 
-Jitter buffer pops
+The workflow probably lacks release write permission.
 
-Opus decode
+Add:
 
-Speaking state transitions
+```yaml
+permissions:
+  contents: write
+```
 
-Event generation
+Also check:
 
-Call once per frame or fixed timestep.
+```text
+GitHub repo → Settings → Actions → General → Workflow permissions
+```
 
-11. Events and Output
-Event polling
+Set workflow permissions to read/write if needed.
 
-Events are queued internally and polled by the host.
+## 13. Release process
 
-Event types include:
+Recommended candidate flow:
 
-LOG
+```powershell
+git status
+git add .
+git commit -m "Prepare Unity package 0.2.0-rc.1"
+git tag -a v0.2.0-rc.1 -m "Residual Voice Unity package 0.2.0-rc.1"
+git push
+git push origin v0.2.0-rc.1
+```
 
-CONNECTED / DISCONNECTED
+The release workflow should:
 
-SPEAKING start/stop
+- Checkout source
+- Build native plugin
+- Run smoke test
+- Package Unity package
+- Upload artifact
+- Create GitHub Release
 
-PCM_FRAME
+Release workflow permission requirement:
 
-ERROR
+```yaml
+permissions:
+  contents: write
+```
 
-PCM Frame Event
+## 14. Versioning
 
-Each decoded frame includes:
+Before `1.0.0`, APIs may change.
 
-Speaker ID
+Recommended version sequence:
 
-Sample rate
+```text
+0.2.0-rc.1
+0.2.0-rc.2
+0.2.0
+```
 
-Channel count
+Use `rc` when the package is believed to be release-ready but still needs final validation.
 
-Flags (radio / proximity)
+Use `preview` when the package is useful but knowingly incomplete.
 
-Radio channel
+Examples:
 
-PCM samples
+```text
+0.1.0-preview.1
+0.2.0-preview.1
+0.2.0-rc.1
+0.2.0
+```
 
-PCM memory is owned by the engine and valid until the next tick.
+## 15. Current limitations
 
-12. Mixed Output (Optional)
+Current limitations:
 
-The engine can mix all decoded speakers into a single mono buffer.
+- Windows x86_64 only
+- No production network transport
+- No real multiplayer sample yet
+- No Linux/macOS packaged native plugins
+- No mobile support
+- No console support
+- Public API may change before `1.0.0`
 
-This is optional and intended for simple use cases.
+## 16. Near-term roadmap
 
-Most games will instead spatialize per-speaker PCM.
+Recommended next milestones:
 
-13. Proximity vs Radio (Phasmophobia Model)
+1. Two-peer local loopback sample
+2. Local UDP transport
+3. Two-editor LAN validation
+4. Transport abstraction cleanup
+5. Runtime packet validation hardening
+6. Platform build expansion
+7. Steam/Relay transport exploration
+8. API stabilization for `0.3.x`
+9. Wider package documentation pass
+10. Stable `1.0.0` planning
 
-Voice packets carry routing flags:
+## 17. Security notes
 
-Proximity (default)
+All incoming packets must be treated as untrusted.
 
-Radio
+Before enabling real network traffic, packet ingest should be tested with:
 
-Radio channel (0–15)
+- Malformed packets
+- Truncated packets
+- Oversized packets
+- Duplicated packets
+- Delayed packets
+- Out-of-order packets
+- Unknown packet types
+- Invalid player IDs
+- Invalid payload lengths
 
-PTT state (informational)
+See:
 
-The engine only tags packets.
-The host decides:
+```text
+SECURITY.md
+```
 
-Whether to play audio
+## 18. Maintainer checklist before release
 
-How to attenuate it
+Before tagging a release candidate:
 
-Whether to spatialize it
-
-Whether radio overrides distance
-
-14. Host Responsibilities Summary
-
-The host must provide:
-
-Networking (UDP, Steam, EOS, etc.)
-
-Encryption and security
-
-Proximity distance checks
-
-Spatialization / HRTF
-
-Audio playback
-
-Thread coordination
-
-Session management
-
-ResidualVoiceEngine intentionally does not do these things.
-
-15. Unity Integration Notes
-
-Use a native plugin + P/Invoke
-
-Call async capture from audio callback
-
-Drive tick from main thread
-
-Route PCM into AudioSources
-
-Apply spatialization in Unity
-
-16. Unreal Integration Notes
-
-Wrap engine in a module
-
-Call tick from a component
-
-Capture PCM via Unreal audio capture
-
-Route decoded PCM into Audio Components
-
-17. Security and Production Use
-
-ResidualVoiceEngine is not secure by default.
-
-For production, you must add:
-
-Authentication
-
-Encryption (DTLS / libsodium / platform crypto)
-
-Packet validation
-
-Replay protection
-
-Rate limiting
-
-18. Design Philosophy
-
-Explicit over implicit
-
-No hidden threads
-
-No hidden networking
-
-No platform lock-in
-
-Policy belongs to the host
-
-The engine does one thing well:
-turn voice packets into decoded audio and back again.
-
-19. Current State
-
-At this point, the engine is:
-
-Feature-complete for proximity + radio voice
-
-API-stable
-
-Thread-safe for audio capture
-
-Engine-neutral
-
-Ready for real integration
-
-What remains is integration work, not engine work.
+- Smoke test passes.
+- Fresh Unity import passes.
+- Basic Loopback sample works.
+- Diagnostics sample imports.
+- Package version is updated.
+- CHANGELOG is updated.
+- README is updated.
+- DOCUMENTATION is updated.
+- SECURITY is present.
+- Native DLL is current.
+- Unity `.meta` files are committed.
+- GitHub release workflow has `contents: write`.
+- Release tag is annotated.

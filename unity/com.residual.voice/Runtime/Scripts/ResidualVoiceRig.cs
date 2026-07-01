@@ -43,6 +43,10 @@ namespace Residual.Voice
         [SerializeField]
         private ResidualVoicePlaybackSource playbackSource;
 
+        [Tooltip("Optional transport component. Must implement IResidualVoiceTransport. External transport wins over loopback.")]
+        [SerializeField]
+        private MonoBehaviour transportBehaviour;
+
         [Header("Lifecycle")]
         [SerializeField]
         private bool createOnStart = true;
@@ -63,19 +67,13 @@ namespace Residual.Voice
 
         public IResidualVoiceTransport Transport => _transport;
 
+        public IResidualVoiceTransport ExternalTransport => transportBehaviour as IResidualVoiceTransport;
+
         public bool IsRunning => _client != null && _client.IsCreated;
 
         private void Awake()
         {
-            if (micInput == null)
-            {
-                micInput = GetComponent<ResidualVoiceMicInput>();
-            }
-
-            if (playbackSource == null)
-            {
-                playbackSource = GetComponent<ResidualVoicePlaybackSource>();
-            }
+            AutoWireComponents();
         }
 
         private void Start()
@@ -109,6 +107,16 @@ namespace Residual.Voice
         private void OnDestroy()
         {
             Shutdown();
+        }
+
+        private void Reset()
+        {
+            AutoWireComponents();
+        }
+
+        private void OnValidate()
+        {
+            AutoWireComponents();
         }
 
         public void Create()
@@ -145,10 +153,7 @@ namespace Residual.Voice
                 playbackSource.AttachClient(_client);
             }
 
-            if (useLoopbackTransport)
-            {
-                AttachTransport(new ResidualVoiceLoopbackTransport());
-            }
+            AttachConfiguredTransport();
         }
 
         public void Connect()
@@ -182,6 +187,8 @@ namespace Residual.Voice
             {
                 throw new ArgumentNullException(nameof(transport));
             }
+
+            EnsureClient();
 
             if (_binding != null)
             {
@@ -227,24 +234,52 @@ namespace Residual.Voice
                 _client = null;
             }
         }
-private void Reset()
-{
-    micInput = GetComponent<ResidualVoiceMicInput>();
-    playbackSource = GetComponent<ResidualVoicePlaybackSource>();
-}
 
-private void OnValidate()
-{
-    if (micInput == null)
-    {
-        micInput = GetComponent<ResidualVoiceMicInput>();
-    }
+        private void AttachConfiguredTransport()
+        {
+            var externalTransport = transportBehaviour as IResidualVoiceTransport;
 
-    if (playbackSource == null)
-    {
-        playbackSource = GetComponent<ResidualVoicePlaybackSource>();
-    }
-}
+            if (externalTransport != null)
+            {
+                AttachTransport(externalTransport);
+                return;
+            }
+
+            if (transportBehaviour != null)
+            {
+                throw new InvalidOperationException(
+                    $"{nameof(transportBehaviour)} is assigned but does not implement {nameof(IResidualVoiceTransport)}.");
+            }
+
+            if (useLoopbackTransport)
+            {
+                AttachTransport(new ResidualVoiceLoopbackTransport());
+            }
+        }
+
+        private void AutoWireComponents()
+        {
+            if (micInput == null)
+            {
+                micInput = GetComponent<ResidualVoiceMicInput>();
+            }
+
+            if (playbackSource == null)
+            {
+                playbackSource = GetComponent<ResidualVoicePlaybackSource>();
+            }
+
+            if (transportBehaviour == null)
+            {
+                var localPeerTransport = GetComponent<ResidualVoiceLocalPeerTransport>();
+
+                if (localPeerTransport != null)
+                {
+                    transportBehaviour = localPeerTransport;
+                }
+            }
+        }
+
         private uint GetNowMs()
         {
             return (uint)(Time.realtimeSinceStartupAsDouble * 1000.0);
