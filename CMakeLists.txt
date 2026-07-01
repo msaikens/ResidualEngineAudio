@@ -106,3 +106,18 @@ if (RV_BUILD_EXAMPLES)
 
     target_link_libraries(voice_demo PRIVATE residual_voice)
 endif()
+# ----------------------------
+# Unity package output
+# ----------------------------
+option(RV_COPY_UNITY_PLUGIN "Copy built native library into Unity package folder" ON)
+
+if (RV_COPY_UNITY_PLUGIN AND WIN32)
+    add_custom_command(TARGET residual_voice POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E make_directory
+            "${CMAKE_CURRENT_SOURCE_DIR}/unity/com.residual.voice/Runtime/Plugins/Windows/x86_64"
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            "$<TARGET_FILE:residual_voice>"
+            "${CMAKE_CURRENT_SOURCE_DIR}/unity/com.residual.voice/Runtime/Plugins/Windows/x86_64/$<TARGET_FILE_NAME:residual_voice>"
+        COMMENT "Copying residual_voice native plugin into Unity package"
+    )
+endif()
