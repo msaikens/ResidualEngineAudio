@@ -57,7 +57,8 @@ $RequiredPackageFiles = @(
     "unity\com.residual.voice\Runtime\Scripts\IResidualVoiceTransport.cs",
     "unity\com.residual.voice\Runtime\Scripts\ResidualVoiceLoopbackTransport.cs",
     "unity\com.residual.voice\Runtime\Scripts\ResidualVoiceTransportBinding.cs",
-    "unity\com.residual.voice\Runtime\Scripts\ResidualVoicePcmUtility.cs"
+    "unity\com.residual.voice\Runtime\Scripts\ResidualVoicePcmUtility.cs",
+    "unity\com.residual.voice\Runtime\Scripts\ResidualVoicePlaybackBuffer.cs"
 )
 
 foreach ($File in $RequiredPackageFiles) {
