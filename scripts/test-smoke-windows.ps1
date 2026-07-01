@@ -3,7 +3,7 @@ $ErrorActionPreference = "Stop"
 $Root = Split-Path -Parent $PSScriptRoot
 Set-Location $Root
 
-function Run-Checked {
+function Invoke-Checked {
     param(
         [Parameter(Mandatory = $true)]
         [string] $Exe,
@@ -25,14 +25,14 @@ if (Test-Path "build-release") {
     Remove-Item -Recurse -Force "build-release"
 }
 
-Run-Checked "cmake" @(
+Invoke-Checked "cmake" @(
     "-S", ".",
     "-B", "build-release",
     "-A", "x64",
     "-DRV_COPY_UNITY_PLUGIN=ON"
 )
 
-Run-Checked "cmake" @(
+Invoke-Checked "cmake" @(
     "--build", "build-release",
     "--config", "Release"
 )
@@ -73,7 +73,7 @@ foreach ($File in $RequiredPackageFiles) {
 
 Write-Host "Building .NET smoke test..."
 
-Run-Checked "dotnet" @(
+Invoke-Checked "dotnet" @(
     "build",
     $SmokeProject
 )
@@ -92,7 +92,7 @@ if (!(Test-Path $SmokeDllPath)) {
 
 Write-Host "Running .NET smoke test..."
 
-Run-Checked "dotnet" @(
+Invoke-Checked "dotnet" @(
     "run",
     "--no-build",
     "--project",
