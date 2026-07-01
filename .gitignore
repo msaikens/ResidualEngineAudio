@@ -1,4 +1,36 @@
+# Build outputs
+build/
+out/
+bin/
+lib/
+dist/
+
+# CMake
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+compile_commands.json
 CMakeUserPresets.json
-/build
-/out
-.cache
+
+# Editor / IDE
+.cache/
+.vs/
+.vscode/ipch/
+.vscode/.browse.VC.db
+.vscode/.browse.VC.db-*
+.idea/
+
+# Native binaries
+*.dll
+*.so
+*.dylib
+*.a
+*.lib
+*.exp
+*.pdb
+*.ilk
+*.exe
+
+# OS noise
+.DS_Store
+Thumbs.db

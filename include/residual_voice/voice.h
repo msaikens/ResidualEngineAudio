@@ -84,6 +84,31 @@ typedef enum rv_voice_event_type {
     RV_VOICE_EVENT_ERROR
 } rv_voice_event_type_t;
 
+/* ===========================
+   Unity / managed interop helpers
+   =========================== */
+
+typedef struct rv_voice_event_flat {
+    uint32_t type;          /* rv_voice_event_type_t */
+
+    int32_t level;          /* LOG only */
+    int32_t code;           /* ERROR only */
+
+    uint16_t speaker_id;    /* SPEAKING / PCM_FRAME */
+    uint8_t is_speaking;    /* SPEAKING only */
+    uint8_t channels;       /* PCM_FRAME only */
+
+    uint8_t flags;          /* PCM_FRAME only */
+    uint8_t radio_channel;  /* PCM_FRAME only */
+    uint8_t reserved_u8[2];
+
+    uint32_t sample_rate;   /* PCM_FRAME only */
+    uint32_t sample_count;  /* PCM_FRAME only, per channel */
+
+    uint32_t message_size;  /* LOG / ERROR message bytes copied, excluding null */
+} rv_voice_event_flat_t;
+
+
 typedef struct rv_voice_event_log {
     int level;            // 0=info,1=warn,2=error
     const char* message;  // owned until next poll
@@ -128,6 +153,14 @@ typedef struct rv_voice_event {
     } as;
 } rv_voice_event_t;
 
+RV_VOICE_API uint32_t rv_voice_get_api_version(void);
+
+RV_VOICE_API uint32_t rv_voice_get_required_frame_samples(rv_voice_t* v);
+RV_VOICE_API uint32_t rv_voice_get_sample_rate(rv_voice_t* v);
+RV_VOICE_API uint32_t rv_voice_get_frame_ms(rv_voice_t* v);
+RV_VOICE_API uint32_t rv_voice_get_max_players(rv_voice_t* v);
+
+RV_VOICE_API const char* rv_voice_result_to_string(rv_voice_result_t result);
 /* ===========================
    Allocators / callbacks
    =========================== */
@@ -181,6 +214,30 @@ typedef struct rv_voice_player_state {
     uint8_t   radio_enabled;
     uint8_t   radio_channel;
 } rv_voice_player_state_t;
+
+
+/*
+ * Managed-friendly event polling.
+ *
+ * Returns:
+ *   1  = event copied
+ *   0  = no event available
+ *  -1  = invalid argument
+ *  -2  = PCM buffer too small; event metadata still filled, frame was dropped
+ *
+ * For PCM events, pass an int16_t buffer with at least
+ * rv_voice_get_required_frame_samples(v) samples.
+ *
+ * For LOG / ERROR events, pass a char buffer if you want the message copied.
+ */
+RV_VOICE_API int rv_voice_poll_event_flat(
+    rv_voice_t* v,
+    rv_voice_event_flat_t* out_event,
+    int16_t* out_pcm,
+    uint32_t out_pcm_capacity,
+    char* out_message,
+    uint32_t out_message_capacity
+);
 
 /* ===========================
    Lifecycle

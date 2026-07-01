@@ -1,5 +1,5 @@
 #include "rv_opus.h"
-#include <opus/opus.h>
+#include <opus.h>
 #include <stdlib.h>
 #include <string.h>
 

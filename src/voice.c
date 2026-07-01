@@ -688,3 +688,160 @@ int rv_voice_mix_output(rv_voice_t* v,
 
     return any ? (int)out_samples_per_ch : 0;
 }
+/* ============================================================
+   Unity / managed interop helpers
+   ============================================================ */
+
+uint32_t rv_voice_get_api_version(void)
+{
+    return RV_VOICE_API_VERSION;
+}
+
+uint32_t rv_voice_get_required_frame_samples(rv_voice_t* v)
+{
+    if (!v || !v->initialized) return 0;
+    return v->frame_samples;
+}
+
+uint32_t rv_voice_get_sample_rate(rv_voice_t* v)
+{
+    if (!v || !v->initialized) return 0;
+    return v->cfg.sample_rate_hz;
+}
+
+uint32_t rv_voice_get_frame_ms(rv_voice_t* v)
+{
+    if (!v || !v->initialized) return 0;
+    return v->cfg.frame_ms;
+}
+
+uint32_t rv_voice_get_max_players(rv_voice_t* v)
+{
+    if (!v || !v->initialized) return 0;
+    return v->cfg.max_players;
+}
+
+const char* rv_voice_result_to_string(rv_voice_result_t result)
+{
+    switch (result) {
+        case RV_VOICE_OK:
+            return "RV_VOICE_OK";
+        case RV_VOICE_ERR_INVALID_ARGUMENT:
+            return "RV_VOICE_ERR_INVALID_ARGUMENT";
+        case RV_VOICE_ERR_OUT_OF_MEMORY:
+            return "RV_VOICE_ERR_OUT_OF_MEMORY";
+        case RV_VOICE_ERR_NOT_INITIALIZED:
+            return "RV_VOICE_ERR_NOT_INITIALIZED";
+        case RV_VOICE_ERR_NOT_CONNECTED:
+            return "RV_VOICE_ERR_NOT_CONNECTED";
+        case RV_VOICE_ERR_INTERNAL:
+            return "RV_VOICE_ERR_INTERNAL";
+        default:
+            return "RV_VOICE_ERR_UNKNOWN";
+    }
+}
+
+static uint32_t rv_copy_message(char* dst, uint32_t dst_cap, const char* src)
+{
+    if (!src) src = "";
+
+    uint32_t len = 0;
+    while (src[len] != '\0') {
+        len++;
+    }
+
+    if (!dst || dst_cap == 0) {
+        return len;
+    }
+
+    uint32_t copy_len = len;
+    if (copy_len >= dst_cap) {
+        copy_len = dst_cap - 1u;
+    }
+
+    if (copy_len > 0) {
+        memcpy(dst, src, copy_len);
+    }
+
+    dst[copy_len] = '\0';
+    return copy_len;
+}
+
+int rv_voice_poll_event_flat(
+    rv_voice_t* v,
+    rv_voice_event_flat_t* out_event,
+    int16_t* out_pcm,
+    uint32_t out_pcm_capacity,
+    char* out_message,
+    uint32_t out_message_capacity
+)
+{
+    if (!v || !out_event) {
+        return -1;
+    }
+
+    rv_voice_event_t ev;
+    if (!rv_voice_poll_event(v, &ev)) {
+        return 0;
+    }
+
+    memset(out_event, 0, sizeof(*out_event));
+    out_event->type = (uint32_t)ev.type;
+
+    switch (ev.type) {
+        case RV_VOICE_EVENT_LOG:
+            out_event->level = ev.as.log.level;
+            out_event->message_size = rv_copy_message(
+                out_message,
+                out_message_capacity,
+                ev.as.log.message
+            );
+            return 1;
+
+        case RV_VOICE_EVENT_CONNECTED:
+        case RV_VOICE_EVENT_DISCONNECTED:
+            return 1;
+
+        case RV_VOICE_EVENT_SPEAKING:
+            out_event->speaker_id = ev.as.speaking.speaker_id;
+            out_event->is_speaking = ev.as.speaking.is_speaking;
+            return 1;
+
+        case RV_VOICE_EVENT_PCM_FRAME:
+            out_event->speaker_id = ev.as.pcm.speaker_id;
+            out_event->sample_rate = ev.as.pcm.sample_rate;
+            out_event->channels = ev.as.pcm.channels;
+            out_event->flags = ev.as.pcm.flags;
+            out_event->radio_channel = ev.as.pcm.radio_channel;
+            out_event->sample_count = ev.as.pcm.sample_count;
+
+            if (ev.as.pcm.sample_count == 0 || !ev.as.pcm.samples) {
+                return 1;
+            }
+
+            if (!out_pcm || out_pcm_capacity < ev.as.pcm.sample_count) {
+                return -2;
+            }
+
+            memcpy(
+                out_pcm,
+                ev.as.pcm.samples,
+                ev.as.pcm.sample_count * sizeof(int16_t)
+            );
+
+            return 1;
+
+        case RV_VOICE_EVENT_ERROR:
+            out_event->code = (int32_t)ev.as.error.code;
+            out_event->message_size = rv_copy_message(
+                out_message,
+                out_message_capacity,
+                ev.as.error.message
+            );
+            return 1;
+
+        case RV_VOICE_EVENT_NONE:
+        default:
+            return 1;
+    }
+}
