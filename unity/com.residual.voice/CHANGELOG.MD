@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.2.0-rc.1] - 2026-07-01
+
+### Added
+- Basic Loopback sample scene for validating Unity microphone capture, native encode/decode, loopback packet flow, and playback.
+- Diagnostics sample with microphone and playback probe components.
+- Unity runtime components for microphone input, playback buffering, loopback transport, transport binding, push-to-talk, and rig setup.
+- Windows x86_64 native plugin packaging.
+
+### Fixed
+- Stopped the native jitter buffer from emitting endless PLC silence when the stream is idle.
+- Improved Unity loopback playback stability after multiple spoken phrases.
+
+### Notes
+- This is a release candidate for the Unity package preview.
+- Current package target is Windows x86_64.
+- Networking protocol support exists in the native core, but a production Unity network transport is not included in this release candidate.
+
 ## 0.2.0-preview.1
 
 Added Unity runtime components:

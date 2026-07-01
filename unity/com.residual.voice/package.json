@@ -2,26 +2,21 @@
   "name": "com.residual.voice",
   "version": "0.2.0-preview.1",
   "displayName": "Residual Voice",
-  "description": "Native Opus-based realtime voice and audio transport core for Unity games.",
+  "description": "Transport-agnostic native voice engine bindings for Unity.",
   "unity": "2022.3",
   "author": {
-    "name": "Residual Engine Audio",
-    "url": "https://github.com/msaikens/ResidualEngineAudio"
+    "name": "Residual Engine"
   },
-  "keywords": [
-    "voice",
-    "audio",
-    "opus",
-    "voip",
-    "proximity-chat",
-    "radio",
-    "unity"
-  ],
   "samples": [
     {
       "displayName": "Basic Loopback",
-      "description": "Minimal placeholder sample for microphone-to-playback loopback integration.",
+      "description": "A minimal local loopback scene for validating microphone capture, native encode/decode, and Unity playback.",
       "path": "Samples~/BasicLoopback"
+    },
+    {
+      "displayName": "Diagnostics",
+      "description": "Microphone and playback probe components for troubleshooting Unity audio input and output.",
+      "path": "Samples~/Diagnostics"
     }
   ]
 }

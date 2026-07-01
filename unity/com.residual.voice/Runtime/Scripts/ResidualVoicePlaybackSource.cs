@@ -13,19 +13,72 @@ namespace Residual.Voice
             new Dictionary<ushort, ResidualVoicePlaybackBuffer>();
 
         private ResidualVoiceClient _client;
+        private AudioSource _audioSource;
+        private AudioClip _streamingClip;
+
+        [Header("Playback")]
+        [SerializeField]
+        private int playbackSampleRateHz = 48000;
+
+            
+        [SerializeField]
+        private int playbackChannels = 1;
 
         [SerializeField]
         private int bufferCapacitySamples = 48000;
-
-        [SerializeField]
-        private bool clearOutputBeforeMix = true;
 
         [SerializeField]
         [Range(0.0f, 2.0f)]
         private float gain = 1.0f;
 
         [SerializeField]
+        private float lastQueuedPeakDebug;
+
+        [SerializeField]
+        private float lastMixedPeakDebug;
+
+        [SerializeField]
+        private int silentQueuedFrameCountDebug;
+
+        [SerializeField]
+        private int nonSilentQueuedFrameCountDebug;
+
+        [SerializeField]
         private bool autoPlayAudioSource = true;
+
+        [SerializeField]
+        private bool keepAudioSourceAlive = true;
+
+        [SerializeField]
+        private bool logPlaybackState;
+
+        [Header("Runtime Debug")]
+        [SerializeField]
+        private int speakerCountDebug;
+
+        [SerializeField]
+        private int totalAvailableSamplesDebug;
+
+        [SerializeField]
+        private int queuedFrameCountDebug;
+
+        [SerializeField]
+        private int queuedSampleCountDebug;
+
+        [SerializeField]
+        private int audioReadCallbackCountDebug;
+
+        [SerializeField]
+        private int mixedSampleCountDebug;
+
+        [SerializeField]
+        private int lastAudioReadSampleCountDebug;
+
+        [SerializeField]
+        private bool audioSourceIsPlayingDebug;
+
+        [SerializeField]
+        private string playbackStatusDebug = "Not started";
 
         public int BufferCapacitySamples
         {
@@ -39,12 +92,6 @@ namespace Residual.Voice
 
                 bufferCapacitySamples = value;
             }
-        }
-
-        public bool ClearOutputBeforeMix
-        {
-            get => clearOutputBeforeMix;
-            set => clearOutputBeforeMix = value;
         }
 
         public float Gain
@@ -64,28 +111,42 @@ namespace Residual.Voice
             }
         }
 
+        public int TotalAvailableSamples
+        {
+            get
+            {
+                lock (_sync)
+                {
+                    return GetTotalAvailableSamplesNoLock();
+                }
+            }
+        }
+
         private void Awake()
         {
-            var source = GetComponent<AudioSource>();
+            EnsureAudioSource();
+        }
 
-            source.playOnAwake = true;
-            source.loop = true;
-            source.spatialBlend = 0.0f;
+        private void OnEnable()
+        {
+            EnsureAudioSource();
 
-            if (source.clip == null)
+            if (autoPlayAudioSource)
             {
-                source.clip = AudioClip.Create(
-                    "Residual Voice Playback",
-                    48000,
-                    1,
-                    48000,
-                    stream: false);
+                EnsurePlaying();
+            }
+        }
+
+        private void Update()
+        {
+            if (keepAudioSourceAlive)
+            {
+                EnsurePlaying();
             }
 
-            if (autoPlayAudioSource && !source.isPlaying)
-            {
-                source.Play();
-            }
+            speakerCountDebug = SpeakerCount;
+            totalAvailableSamplesDebug = TotalAvailableSamples;
+            audioSourceIsPlayingDebug = _audioSource != null && _audioSource.isPlaying;
         }
 
         private void OnDestroy()
@@ -105,6 +166,8 @@ namespace Residual.Voice
 
             _client = client ?? throw new ArgumentNullException(nameof(client));
             _client.PcmFrameReady += OnPcmFrameReady;
+
+            playbackStatusDebug = "Client attached";
         }
 
         public void DetachClient()
@@ -116,6 +179,8 @@ namespace Residual.Voice
 
             _client.PcmFrameReady -= OnPcmFrameReady;
             _client = null;
+
+            playbackStatusDebug = "Client detached";
         }
 
         public void Clear()
@@ -129,6 +194,8 @@ namespace Residual.Voice
 
                 _speakerBuffers.Clear();
             }
+
+            playbackStatusDebug = "Cleared";
         }
 
         public void ClearSpeaker(ushort speakerId)
@@ -171,7 +238,23 @@ namespace Residual.Voice
                 }
             }
 
-            buffer.Enqueue(frame.Samples, 0, frame.Samples.Length);
+            var peak = GetPcm16Peak(frame.Samples);
+            lastQueuedPeakDebug = peak;
+
+            if (peak <= 0.001f)
+                {
+                    silentQueuedFrameCountDebug++;
+                }
+            else
+                {
+                    nonSilentQueuedFrameCountDebug++;
+                }
+
+            var written = buffer.Enqueue(frame.Samples, 0, frame.Samples.Length);
+
+            queuedFrameCountDebug++;
+            queuedSampleCountDebug += written;
+            playbackStatusDebug = $"Queued speaker {frame.SpeakerId}, samples={written}, peak={peak:0.000000}";
         }
 
         private void OnPcmFrameReady(ResidualVoicePcmFrame frame)
@@ -179,18 +262,16 @@ namespace Residual.Voice
             QueueFrame(frame);
         }
 
-        private void OnAudioFilterRead(float[] data, int channels)
+        private void OnAudioRead(float[] data)
         {
-            if (data == null || data.Length == 0 || channels <= 0)
+            if (data == null || data.Length == 0)
             {
                 return;
             }
 
-            if (clearOutputBeforeMix)
-            {
-                Array.Clear(data, 0, data.Length);
-            }
+            Array.Clear(data, 0, data.Length);
 
+            var channels = Mathf.Max(1, playbackChannels);
             var frameCount = data.Length / channels;
 
             if (frameCount <= 0)
@@ -198,18 +279,157 @@ namespace Residual.Voice
                 return;
             }
 
+            var mixedFrames = 0;
+
             lock (_sync)
             {
                 foreach (var buffer in _speakerBuffers.Values)
                 {
-                    buffer.MixIntoInterleavedFloat(
+                    var read = buffer.MixIntoInterleavedFloat(
                         data,
                         destinationOffset: 0,
                         destinationChannels: channels,
                         frameCount: frameCount,
                         gain: gain);
+
+                    if (read > mixedFrames)
+                    {
+                        mixedFrames = read;
+                    }
                 }
             }
+
+            lastMixedPeakDebug = GetFloatPeak(data);
+
+            audioReadCallbackCountDebug++;
+            lastAudioReadSampleCountDebug = data.Length;
+            mixedSampleCountDebug += mixedFrames;
+        }
+
+        private void OnAudioSetPosition(int newPosition)
+        {
+            // Streaming clip position callback intentionally unused.
+        }
+
+        private void EnsureAudioSource()
+        {
+            if (_audioSource == null)
+            {
+                _audioSource = GetComponent<AudioSource>();
+            }
+
+            if (playbackChannels <= 0)
+            {
+                playbackChannels = 1;
+            }
+
+            if (playbackSampleRateHz <= 0)
+            {
+                playbackSampleRateHz = 48000;
+            }
+
+            _audioSource.playOnAwake = true;
+            _audioSource.loop = true;
+            _audioSource.spatialBlend = 0.0f;
+            _audioSource.volume = 1.0f;
+            _audioSource.mute = false;
+
+            if (_streamingClip == null)
+            {
+                _streamingClip = AudioClip.Create(
+                    "Residual Voice Streaming Playback",
+                    playbackSampleRateHz,
+                    playbackChannels,
+                    playbackSampleRateHz,
+                    stream: true,
+                    pcmreadercallback: OnAudioRead,
+                    pcmsetpositioncallback: OnAudioSetPosition);
+
+                playbackStatusDebug = "Streaming clip created";
+            }
+
+            if (_audioSource.clip != _streamingClip)
+            {
+                _audioSource.clip = _streamingClip;
+            }
+        }
+
+        private void EnsurePlaying()
+        {
+            EnsureAudioSource();
+
+            if (!_audioSource.enabled || !gameObject.activeInHierarchy)
+            {
+                return;
+            }
+
+            if (!_audioSource.isPlaying)
+            {
+                if (logPlaybackState)
+                {
+                    Debug.Log("ResidualVoicePlaybackSource starting streaming AudioSource.", this);
+                }
+
+                _audioSource.Play();
+                playbackStatusDebug = "AudioSource playing";
+            }
+        }
+        private static float GetPcm16Peak(short[] samples)
+            {
+            if (samples == null || samples.Length == 0)
+            {
+                return 0.0f;
+            }
+
+            var peak = 0.0f;
+
+            for (var i = 0; i < samples.Length; i++)
+            {
+                var value = Mathf.Abs(samples[i] / 32768.0f);
+
+                if (value > peak)
+                {
+                    peak = value;
+                }
+            }
+
+            return peak;
+            
+            }
+
+        private static float GetFloatPeak(float[] samples)
+        {
+    
+                if (samples == null || samples.Length == 0)
+                {
+                    return 0.0f;
+                }
+
+                var peak = 0.0f;
+
+                for (var i = 0; i < samples.Length; i++)
+                {
+
+                    var value = Mathf.Abs(samples[i]);
+
+                    if (value > peak)
+                    {
+                        peak = value;
+                    }
+                }
+            return peak;
+        
+            }        
+        private int GetTotalAvailableSamplesNoLock()
+        {
+            var total = 0;
+
+            foreach (var buffer in _speakerBuffers.Values)
+            {
+                total += buffer.AvailableSamples;
+            }
+
+            return total;
         }
     }
 }

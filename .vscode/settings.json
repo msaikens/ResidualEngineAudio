@@ -1,6 +1,8 @@
 {
   "cmake.useCMakePresets": "always",
   "clangd.arguments": [
-    "--background-index"
-  ]
+    "--background-index",
+    "--compile-commands-dir=build"
+  ],
+  "C_Cpp.intelliSenseEngine": "disabled",
 }

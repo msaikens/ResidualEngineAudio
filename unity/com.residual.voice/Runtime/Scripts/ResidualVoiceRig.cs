@@ -96,7 +96,7 @@ namespace Residual.Voice
             }
         }
 
-        private void Update()
+        private void LateUpdate()
         {
             if (_binding == null)
             {
@@ -227,7 +227,24 @@ namespace Residual.Voice
                 _client = null;
             }
         }
+private void Reset()
+{
+    micInput = GetComponent<ResidualVoiceMicInput>();
+    playbackSource = GetComponent<ResidualVoicePlaybackSource>();
+}
 
+private void OnValidate()
+{
+    if (micInput == null)
+    {
+        micInput = GetComponent<ResidualVoiceMicInput>();
+    }
+
+    if (playbackSource == null)
+    {
+        playbackSource = GetComponent<ResidualVoicePlaybackSource>();
+    }
+}
         private uint GetNowMs()
         {
             return (uint)(Time.realtimeSinceStartupAsDouble * 1000.0);
