@@ -39,10 +39,8 @@ namespace Residual.Voice
             uint sampleRateHz = 48000,
             uint frameMs = 20,
             uint bitrateBps = 24000,
-            ushort maxPlayers = 64,
-            byte channels = 1,
-            bool enableDtx = true,
-            bool enableFec = true)
+            ushort maxPlayers = 64
+        )
         {
             if (_handle != IntPtr.Zero)
             {
@@ -50,17 +48,16 @@ namespace Residual.Voice
             }
 
             var config = new RvVoiceConfig
-            {
-                sample_rate_hz = sampleRateHz,
-                frame_ms = frameMs,
-                bitrate_bps = bitrateBps,
-                max_players = maxPlayers,
-                local_player_id = localPlayerId,
-                channels = channels,
-                enable_dtx = enableDtx ? (byte)1 : (byte)0,
-                enable_fec = enableFec ? (byte)1 : (byte)0,
-                reserved = 0
-            };
+                {
+                    api_version = ResidualVoiceNative.rv_voice_get_api_version(),
+                    sample_rate_hz = sampleRateHz,
+                    frame_ms = frameMs,
+                    max_players = maxPlayers,
+                    jitter_target_ms = 60,
+                    jitter_max_ms = 200,
+                    capture_mode = RvVoiceCaptureMode.PushToTalkOnly,
+                    reserved_u32 = new uint[8]
+                };
 
             _handle = ResidualVoiceNative.rv_voice_create(ref config, IntPtr.Zero, IntPtr.Zero);
 

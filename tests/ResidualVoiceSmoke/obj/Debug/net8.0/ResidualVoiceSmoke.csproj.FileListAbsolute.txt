@@ -1,0 +1,15 @@
+C:\Users\Mitchell Aikens\source\repos\ResidualAudioEngine\tests\ResidualVoiceSmoke\bin\Debug\net8.0\ResidualVoiceSmoke.exe
+C:\Users\Mitchell Aikens\source\repos\ResidualAudioEngine\tests\ResidualVoiceSmoke\bin\Debug\net8.0\ResidualVoiceSmoke.deps.json
+C:\Users\Mitchell Aikens\source\repos\ResidualAudioEngine\tests\ResidualVoiceSmoke\bin\Debug\net8.0\ResidualVoiceSmoke.runtimeconfig.json
+C:\Users\Mitchell Aikens\source\repos\ResidualAudioEngine\tests\ResidualVoiceSmoke\bin\Debug\net8.0\ResidualVoiceSmoke.dll
+C:\Users\Mitchell Aikens\source\repos\ResidualAudioEngine\tests\ResidualVoiceSmoke\bin\Debug\net8.0\ResidualVoiceSmoke.pdb
+C:\Users\Mitchell Aikens\source\repos\ResidualAudioEngine\tests\ResidualVoiceSmoke\obj\Debug\net8.0\ResidualVoiceSmoke.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Mitchell Aikens\source\repos\ResidualAudioEngine\tests\ResidualVoiceSmoke\obj\Debug\net8.0\ResidualVoiceSmoke.AssemblyInfoInputs.cache
+C:\Users\Mitchell Aikens\source\repos\ResidualAudioEngine\tests\ResidualVoiceSmoke\obj\Debug\net8.0\ResidualVoiceSmoke.AssemblyInfo.cs
+C:\Users\Mitchell Aikens\source\repos\ResidualAudioEngine\tests\ResidualVoiceSmoke\obj\Debug\net8.0\ResidualVoiceSmoke.csproj.CoreCompileInputs.cache
+C:\Users\Mitchell Aikens\source\repos\ResidualAudioEngine\tests\ResidualVoiceSmoke\obj\Debug\net8.0\ResidualVoiceSmoke.sourcelink.json
+C:\Users\Mitchell Aikens\source\repos\ResidualAudioEngine\tests\ResidualVoiceSmoke\obj\Debug\net8.0\ResidualVoiceSmoke.dll
+C:\Users\Mitchell Aikens\source\repos\ResidualAudioEngine\tests\ResidualVoiceSmoke\obj\Debug\net8.0\refint\ResidualVoiceSmoke.dll
+C:\Users\Mitchell Aikens\source\repos\ResidualAudioEngine\tests\ResidualVoiceSmoke\obj\Debug\net8.0\ResidualVoiceSmoke.pdb
+C:\Users\Mitchell Aikens\source\repos\ResidualAudioEngine\tests\ResidualVoiceSmoke\obj\Debug\net8.0\ResidualVoiceSmoke.genruntimeconfig.cache
+C:\Users\Mitchell Aikens\source\repos\ResidualAudioEngine\tests\ResidualVoiceSmoke\obj\Debug\net8.0\ref\ResidualVoiceSmoke.dll

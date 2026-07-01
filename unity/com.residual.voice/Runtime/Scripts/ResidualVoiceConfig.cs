@@ -13,6 +13,12 @@ namespace Residual.Voice
         Internal = -5
     }
 
+    internal enum RvVoiceCaptureMode : int
+    {
+        PushToTalkOnly = 0,
+        AlwaysOn = 1
+    }
+
     public enum ResidualVoiceEventType : uint
     {
         None = 0,
@@ -24,19 +30,20 @@ namespace Residual.Voice
         Error = 6
     }
 
-    [StructLayout(LayoutKind.Sequential)]
-    internal struct RvVoiceConfig
-    {
-        public uint sample_rate_hz;
-        public uint frame_ms;
-        public uint bitrate_bps;
-        public ushort max_players;
-        public ushort local_player_id;
-        public byte channels;
-        public byte enable_dtx;
-        public byte enable_fec;
-        public byte reserved;
-    }
+[StructLayout(LayoutKind.Sequential)]
+internal struct RvVoiceConfig
+{
+    public uint api_version;
+    public uint sample_rate_hz;
+    public uint frame_ms;
+    public uint max_players;
+    public uint jitter_target_ms;
+    public uint jitter_max_ms;
+    public RvVoiceCaptureMode capture_mode;
+
+    [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)]
+    public uint[] reserved_u32;
+}
 
     [StructLayout(LayoutKind.Sequential)]
     internal struct RvVoiceEventFlat
