@@ -1,6 +1,6 @@
 {
   "name": "com.residual.voice",
-  "version": "0.1.0-preview.1",
+  "version": "0.2.0-preview.1",
   "displayName": "Residual Voice",
   "description": "Native Opus-based realtime voice and audio transport core for Unity games.",
   "unity": "2022.3",
