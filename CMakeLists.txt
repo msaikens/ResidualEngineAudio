@@ -45,6 +45,7 @@ add_library(residual_voice SHARED
 
 target_compile_definitions(residual_voice PRIVATE
     RV_VOICE_BUILD_DLL=1
+    _CRT_SECURE_NO_WARNINGS=1
 )
 
 target_include_directories(residual_voice

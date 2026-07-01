@@ -24,7 +24,7 @@ namespace Residual.Voice
         internal static extern void rv_voice_destroy(IntPtr voice);
 
         [DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int rv_voice_connect(IntPtr voice, ulong sessionId, ushort localPlayerId);
+        internal static extern int rv_voice_connect(IntPtr voice, ref RvVoiceConnectInfo info);
 
         [DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl)]
         internal static extern void rv_voice_disconnect(IntPtr voice);

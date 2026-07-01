@@ -43,12 +43,36 @@ if (!(Test-Path $PluginPath)) {
     throw "Expected Unity plugin DLL was not found: $PluginPath"
 }
 
+$SmokeProject = "tests\ResidualVoiceSmoke\ResidualVoiceSmoke.csproj"
+$SmokeOutputDir = "tests\ResidualVoiceSmoke\bin\Debug\net8.0"
+$SmokeDllPath = Join-Path $SmokeOutputDir "residual_voice.dll"
+
+if (!(Test-Path $PluginPath)) {
+    throw "Expected Unity plugin DLL was not found: $PluginPath"
+}
+
+Write-Host "Building .NET smoke test..."
+
+Run-Checked "dotnet" @(
+    "build",
+    $SmokeProject
+)
+
+if (!(Test-Path $SmokeOutputDir)) {
+    throw "Expected smoke test output directory was not found: $SmokeOutputDir"
+}
+
+Write-Host "Copying native DLL beside smoke test executable..."
+
+Copy-Item $PluginPath $SmokeDllPath -Force
+
 Write-Host "Running .NET smoke test..."
 
 Run-Checked "dotnet" @(
     "run",
+    "--no-build",
     "--project",
-    "tests/ResidualVoiceSmoke"
+    $SmokeProject
 )
 
 Write-Host "Smoke test passed."

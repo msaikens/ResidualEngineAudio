@@ -71,9 +71,22 @@ namespace Residual.Voice
         }
 
         public void Connect(ulong sessionId, ushort localPlayerId)
+        
         {
             EnsureCreated();
-            ThrowIfError(ResidualVoiceNative.rv_voice_connect(_handle, sessionId, localPlayerId));
+
+                var info = new RvVoiceConnectInfo
+                {
+                    session_id = sessionId,
+                    player_id = localPlayerId,
+                    relay_host = IntPtr.Zero,
+                    relay_port = 0,
+                    local_port = 0,
+                    token = IntPtr.Zero
+                };
+
+            ThrowIfError(ResidualVoiceNative.rv_voice_connect(_handle, ref info));
+        
         }
 
         public void Disconnect()

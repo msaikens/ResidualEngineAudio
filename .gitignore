@@ -1,36 +1,101 @@
+# ----------------------------
 # Build outputs
+# ----------------------------
 build/
+build-*/
 out/
+dist/
 bin/
 lib/
-dist/
 
+# ----------------------------
 # CMake
+# ----------------------------
 CMakeFiles/
 CMakeCache.txt
 cmake_install.cmake
+install_manifest.txt
 compile_commands.json
 CMakeUserPresets.json
+Testing/
 
-# Editor / IDE
-.cache/
+# ----------------------------
+# Visual Studio / MSBuild
+# ----------------------------
 .vs/
+*.user
+*.suo
+*.VC.db
+*.VC.VC.opendb
+*.opensdf
+*.sdf
+*.ipch
+*.tlog
+*.lastbuildstate
+*.log
+*.ilk
+*.pdb
+*.exp
+
+# ----------------------------
+# VS Code / clangd
+# ----------------------------
+.cache/
+.clangd/
 .vscode/ipch/
 .vscode/.browse.VC.db
 .vscode/.browse.VC.db-*
-.idea/
+.vscode/*.log
 
-# Native binaries
+# Optional: ignore all VS Code local settings.
+# If you want shared tasks/settings, remove this line.
+.vscode/
+
+# ----------------------------
+# .NET test outputs
+# ----------------------------
+tests/**/bin/
+tests/**/obj/
+*.deps.json
+*.runtimeconfig.json
+
+# ----------------------------
+# Native binaries by default
+# ----------------------------
 *.dll
 *.so
 *.dylib
 *.a
 *.lib
-*.exp
-*.pdb
-*.ilk
 *.exe
 
+# But keep the Unity package native plugin import-ready.
+!unity/com.residual.voice/Runtime/Plugins/Windows/x86_64/residual_voice.dll
+
+# ----------------------------
+# Unity generated project files
+# Only relevant if you later create test Unity projects inside this repo.
+# ----------------------------
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Uu]ser[Ss]ettings/
+*.csproj
+*.sln
+*.sln.DotSettings.user
+
+# Do not ignore package asmdef or package source files.
+!unity/com.residual.voice/**/*.asmdef
+!unity/com.residual.voice/**/*.cs
+!unity/com.residual.voice/**/*.json
+!unity/com.residual.voice/**/*.md
+
+# ----------------------------
 # OS noise
+# ----------------------------
 .DS_Store
 Thumbs.db
+desktop.ini
