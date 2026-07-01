@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ResidualVoiceSmoke")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+aae75d1125000a8694b92ff6682fb2af102beec6")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+af30b1cf504ecd6fb12ef29faabc6a43d512b3d5")]
 [assembly: System.Reflection.AssemblyProductAttribute("ResidualVoiceSmoke")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ResidualVoiceSmoke")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
