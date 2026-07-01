@@ -38,11 +38,6 @@ Run-Checked "cmake" @(
 )
 
 $PluginPath = "unity\com.residual.voice\Runtime\Plugins\Windows\x86_64\residual_voice.dll"
-
-if (!(Test-Path $PluginPath)) {
-    throw "Expected Unity plugin DLL was not found: $PluginPath"
-}
-
 $SmokeProject = "tests\ResidualVoiceSmoke\ResidualVoiceSmoke.csproj"
 $SmokeOutputDir = "tests\ResidualVoiceSmoke\bin\Debug\net8.0"
 $SmokeDllPath = Join-Path $SmokeOutputDir "residual_voice.dll"
@@ -65,6 +60,10 @@ if (!(Test-Path $SmokeOutputDir)) {
 Write-Host "Copying native DLL beside smoke test executable..."
 
 Copy-Item $PluginPath $SmokeDllPath -Force
+
+if (!(Test-Path $SmokeDllPath)) {
+    throw "Native DLL was not copied to smoke test output: $SmokeDllPath"
+}
 
 Write-Host "Running .NET smoke test..."
 
