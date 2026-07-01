@@ -74,6 +74,7 @@ if (CMAKE_C_COMPILER_ID MATCHES "Clang|GNU")
 elseif (MSVC)
     target_compile_options(residual_voice PRIVATE
         /W4
+        /experimental:c11atomics
     )
 endif()
 
