@@ -1,7 +1,6 @@
 using System;
 using System.Runtime.InteropServices;
 using System.Text;
-using UnityEngine;
 
 namespace Residual.Voice
 {
@@ -16,10 +15,10 @@ namespace Residual.Voice
         private short[] _pcmBuffer = Array.Empty<short>();
         private IntPtr _handle;
 
-        public event Action<byte[], int>? PacketReady;
-        public event Action<ResidualVoicePcmFrame>? PcmFrameReady;
-        public event Action<string>? LogReceived;
-        public event Action<string>? ErrorReceived;
+        public event Action<byte[], int> PacketReady;
+        public event Action<ResidualVoicePcmFrame> PcmFrameReady;
+        public event Action<string> LogReceived;
+        public event Action<string> ErrorReceived;
 
         public bool IsCreated => _handle != IntPtr.Zero;
 
@@ -38,9 +37,10 @@ namespace Residual.Voice
             ushort localPlayerId,
             uint sampleRateHz = 48000,
             uint frameMs = 20,
-            uint bitrateBps = 24000,
-            ushort maxPlayers = 64
-        )
+            ushort maxPlayers = 64,
+            uint jitterTargetMs = 60,
+            uint jitterMaxMs = 200,
+            bool alwaysOn = false)
         {
             if (_handle != IntPtr.Zero)
             {
@@ -48,16 +48,18 @@ namespace Residual.Voice
             }
 
             var config = new RvVoiceConfig
-                {
-                    api_version = ResidualVoiceNative.rv_voice_get_api_version(),
-                    sample_rate_hz = sampleRateHz,
-                    frame_ms = frameMs,
-                    max_players = maxPlayers,
-                    jitter_target_ms = 60,
-                    jitter_max_ms = 200,
-                    capture_mode = RvVoiceCaptureMode.PushToTalkOnly,
-                    reserved_u32 = new uint[8]
-                };
+            {
+                api_version = ResidualVoiceNative.rv_voice_get_api_version(),
+                sample_rate_hz = sampleRateHz,
+                frame_ms = frameMs,
+                max_players = maxPlayers,
+                jitter_target_ms = jitterTargetMs,
+                jitter_max_ms = jitterMaxMs,
+                capture_mode = alwaysOn
+                    ? RvVoiceCaptureMode.AlwaysOn
+                    : RvVoiceCaptureMode.PushToTalkOnly,
+                reserved_u32 = new uint[8]
+            };
 
             _handle = ResidualVoiceNative.rv_voice_create(ref config, IntPtr.Zero, IntPtr.Zero);
 
@@ -67,26 +69,24 @@ namespace Residual.Voice
             }
 
             var frameSamples = ResidualVoiceNative.rv_voice_get_required_frame_samples(_handle);
-            _pcmBuffer = new short[Math.Max(1, (int)frameSamples * Math.Max(1, channels))];
+            _pcmBuffer = new short[Math.Max(1, (int)frameSamples)];
         }
 
         public void Connect(ulong sessionId, ushort localPlayerId)
-        
         {
             EnsureCreated();
 
-                var info = new RvVoiceConnectInfo
-                {
-                    session_id = sessionId,
-                    player_id = localPlayerId,
-                    relay_host = IntPtr.Zero,
-                    relay_port = 0,
-                    local_port = 0,
-                    token = IntPtr.Zero
-                };
+            var info = new RvVoiceConnectInfo
+            {
+                session_id = sessionId,
+                player_id = localPlayerId,
+                relay_host = IntPtr.Zero,
+                relay_port = 0,
+                local_port = 0,
+                token = IntPtr.Zero
+            };
 
             ThrowIfError(ResidualVoiceNative.rv_voice_connect(_handle, ref info));
-        
         }
 
         public void Disconnect()
@@ -191,17 +191,12 @@ namespace Residual.Voice
                     (uint)_packetBuffer.Length,
                     out var outSize);
 
-                if (result == 0 && outSize == 0)
+                if (result == 0 || outSize == 0)
                 {
                     return;
                 }
 
                 ThrowIfError(result);
-
-                if (outSize == 0)
-                {
-                    return;
-                }
 
                 var packetCopy = new byte[outSize];
                 Buffer.BlockCopy(_packetBuffer, 0, packetCopy, 0, (int)outSize);
@@ -228,10 +223,7 @@ namespace Residual.Voice
                     return;
                 }
 
-                if (result < 0)
-                {
-                    ThrowIfError(result);
-                }
+                ThrowIfError(result);
 
                 var eventType = (ResidualVoiceEventType)ev.type;
 
@@ -247,6 +239,13 @@ namespace Residual.Voice
 
                     case ResidualVoiceEventType.PcmFrame:
                         var sampleCount = checked((int)ev.sample_count);
+
+                        if (_pcmBuffer.Length < sampleCount)
+                        {
+                            _pcmBuffer = new short[sampleCount];
+                            break;
+                        }
+
                         var copy = new short[sampleCount];
                         Array.Copy(_pcmBuffer, copy, sampleCount);
 
